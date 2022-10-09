@@ -1,0 +1,24 @@
+.ingredientList {
+    max-height: 570px;
+    overflow: scroll;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.section_header {
+    text-align: start;
+}
+
+.ingredientSection {
+    box-sizing: border-box;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.ingredientSection_grid {
+    display: grid;
+    grid-gap: 5px;
+    grid-template-columns: repeat(2, calc(50% - 14px));
+}

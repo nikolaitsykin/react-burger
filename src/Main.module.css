@@ -1,0 +1,16 @@
+.main {
+  box-sizing: border-box;
+  margin: 0 auto;
+  display: flex;
+  align-self: center;
+  flex-direction: column;
+  max-width: 1280px;
+}
+
+.container {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}

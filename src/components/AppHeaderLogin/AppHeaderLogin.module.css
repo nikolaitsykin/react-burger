@@ -1,0 +1,11 @@
+.container {
+    justify-self: end;
+}
+
+.navItem {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+    color: #fff;
+}
