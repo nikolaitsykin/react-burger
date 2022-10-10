@@ -8,22 +8,21 @@ import { ingredientsPropTypes, _BUN } from '../../utils/standards';
 
 const BurgerConstructor = ({data}) => {
 
-    const selected = []
-
     const total = useMemo(
-        () => data.map((item) => item.price).reduce((a, b) => a + b)
+        () => data.map((item) => item.price).reduce((a, b) => a + b, 0),
         [data]);
 
     return (
+        <>
         <div className={classes.container}>
-            <div className={"pl-8"}>
+            <div className={"pl-6"}>
                 <ConstructorElement
                     key={0}
                     type="top"
-                    isLocked={true}
-                    text={data && data.length && data[0].name}
-                    price={data && data.length && data[0].price}
-                    thumbnail={data && data.length && data[0].image}
+                    isLocked
+                    text={data?.[0]?.name}
+                    price={data?.[0]?.price}
+                    thumbnail={data?.[0]?.image}
                 />
             </div>
             <div className={classes.componentList}>
@@ -42,18 +41,19 @@ const BurgerConstructor = ({data}) => {
                     ) : null;
                 })}
             </div>
-            <div className={"pl-8"}>
+            <div className={"pl-6"}>
                 <ConstructorElement
                     key={1}
                     type="bottom"
                     isLocked={true}
-                    text={data && data.length && data[0].name}
-                    price={data && data.length && data[0].price}
-                    thumbnail={data && data.length && data[0].image}
+                    text={data?.[0]?.name}
+                    price={data?.[0]?.price}
+                    thumbnail={data?.[0]?.image}
                 />
             </div>
-            <Total total={total}/>
+            <Total value={total}/>
         </div>
+        </>
     );
 };
 
