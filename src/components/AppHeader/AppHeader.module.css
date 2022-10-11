@@ -1,0 +1,14 @@
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 33%);
+    max-width: 1240px;
+    width: 100%;
+    margin: 0 auto;
+    align-self: center;    
+    align-items: center;
+    padding-top: 16px;
+}
+
+.logo {
+    justify-self: center;
+}
