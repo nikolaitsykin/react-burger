@@ -1,9 +1,8 @@
-import React from 'react';
-import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import Total from '../Total/Total';
+import React, { useMemo } from 'react';
 import classes from './BurgerConstructor.module.css';
-import { useMemo } from "react";
 import PropTypes from "prop-types";
+import Total from '../Total/Total';
+import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { ingredientsPropTypes, _BUN } from '../../utils/standards';
 
 const BurgerConstructor = ({data}) => {

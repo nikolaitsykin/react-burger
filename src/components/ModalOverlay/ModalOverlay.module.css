@@ -1,0 +1,17 @@
+.container {
+    position: fixed;
+    inset: 0;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(237, 241, 248, 0.6);;
+    
+    
+}
+
+.overlay {
+    position: absolute;
+    cursor: pointer;
+    opacity: 0.8;
+}

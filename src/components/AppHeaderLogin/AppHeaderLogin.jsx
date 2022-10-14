@@ -1,6 +1,7 @@
 import React from 'react';
-import {ProfileIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import classes from './AppHeaderLogin.module.css';
+import {ProfileIcon} from "@ya.praktikum/react-developer-burger-ui-components";
+
 
 const AppHeaderLogin = () => {
     return (

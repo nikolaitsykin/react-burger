@@ -1,8 +1,8 @@
 import React from 'react';
-import IngredientItem from '../IngredientItem/IngredientItem';
-import PropTypes from "prop-types";
-import {ingredientsPropTypes, _BUN, _SAUCE, _MAIN} from "../../utils/standards";
 import classes from './IngredientList.module.css';
+import PropTypes from "prop-types";
+import IngredientItem from '../IngredientItem/IngredientItem';
+import {ingredientsPropTypes, _BUN, _SAUCE, _MAIN} from "../../utils/standards";
 
 const IngredientList = ({ingredients}) => {
     return (

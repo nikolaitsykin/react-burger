@@ -1,8 +1,9 @@
 import React from 'react';
-import Tabs from '../Tabs/Tabs';
-import IngredientList from '../IngredientList/IngredientList';
 import classes from './BurgerIngredients.module.css';
 import PropTypes from "prop-types";
+import Tabs from '../Tabs/Tabs';
+import IngredientList from '../IngredientList/IngredientList';
+
 import { ingredientsPropTypes } from '../../utils/standards';
 
 
