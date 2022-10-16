@@ -5,13 +5,5 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(237, 241, 248, 0.6);;
-    
-    
-}
-
-.overlay {
-    position: absolute;
-    cursor: pointer;
-    opacity: 0.8;
+    background-color: rgba(0, 0, 0, 0.2);;
 }

@@ -5,21 +5,17 @@ import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-c
 import { ingredientsPropTypes } from "../../utils/standards";
 import Modal from '../Modal/Modal';
 import IngredientDetails from '../IngredientDetails/IngredientDetails'
+import { useModal } from '../../utils/useModal';
 
 
 
 const IngredientItem = ({item}) => {
     const [count, setCount] = React.useState(0);
-
-    const [modalActive, setModalActive] = useState(false);
-
-    const onClose = () => {
-        setModalActive(false);
-    };
+    const {isModalActive, toggleModal, onClose} = useModal();
     
     return (
         <>
-        <div className={classes.container} onClick={() => setModalActive(true)}>
+        <div className={classes.container} onClick={() => toggleModal(true)}>
             <div className={classes.top}>
                 {count > 0 && <Counter className={classes.counter} count={count} size="default"/>}
                 <img src={item.image}/>
@@ -34,10 +30,10 @@ const IngredientItem = ({item}) => {
                 </div>
             </div>
         </div>
-        {modalActive && (
+        {isModalActive && (
             <Modal
                 onClose={onClose}
-                isOpened={modalActive}
+                isOpened={isModalActive}
                 header={"Ingredient details"}
             >
                 <IngredientDetails item={item} />
@@ -48,6 +44,6 @@ const IngredientItem = ({item}) => {
 };
 
 IngredientItem.propTypes = {
-    data: PropTypes.arrayOf(ingredientsPropTypes)
+    item: PropTypes.arrayOf(ingredientsPropTypes)
 }
 export default IngredientItem;

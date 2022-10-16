@@ -12,8 +12,7 @@ const ModalOverlay = ({ children, isOpened, onClose }) => {
     
     return (
         <Portal>
-            <div className={classes.container}>
-                <div className={classes.overlay} onClick={onClose} />
+            <div className={classes.container} onClick={onClose}>
                 {children}
             </div>
         </Portal>

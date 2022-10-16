@@ -17,7 +17,7 @@ const OrderDetails = () => {
                     We have started to cook your order
                 </p>
                 <p className='text text_type_main-default text_color_inactive mb-15'>
-                Wait for the order at the orbital station
+                    Wait for the order at the orbital station
                 </p>
             </div>
         </div>

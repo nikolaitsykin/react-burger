@@ -41,7 +41,6 @@ const IngredientList = ({ingredients}) => {
 
 IngredientList.propTypes = {
     ingredients: PropTypes.arrayOf(ingredientsPropTypes),
-  };
-  
+};
 
 export default IngredientList;
