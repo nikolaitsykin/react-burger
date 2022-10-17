@@ -1,0 +1,14 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.image {
+    margin-bottom: 14px;
+    width: 480px;
+}
+
+.name {
+    margin-bottom: 20px;
+}

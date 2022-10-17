@@ -1,0 +1,19 @@
+.container {
+    padding-top: 10px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.order_number {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.order_status {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

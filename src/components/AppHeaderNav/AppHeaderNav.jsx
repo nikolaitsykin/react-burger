@@ -1,7 +1,7 @@
 import React from 'react';
+import classes from './AppHeaderNav.module.css';
 import AppHeaderNavItem from '../AppHeaderNavItem/AppHeaderNavItem';
 import { BurgerIcon, ListIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import classes from './AppHeaderNav.module.css'
 
 const AppHeaderNav = () => {
     return (
