@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './IngredientDetails.module.css';
 import PropTypes from "prop-types";
-import { ingredientsPropTypes } from '../../utils/standards';
+import { ingredientsPropTypes } from '../../utilities/standards';
 import DetailsProperties from '../DetailProperties/DetailProperties';
 
 const IngredientDetails = ({item}) => {
@@ -19,7 +19,7 @@ const IngredientDetails = ({item}) => {
 };
 
 IngredientDetails.propTypes = {
-    item: PropTypes.arrayOf(ingredientsPropTypes),
+    data: PropTypes.arrayOf(ingredientsPropTypes),
 };
 
 export default IngredientDetails;

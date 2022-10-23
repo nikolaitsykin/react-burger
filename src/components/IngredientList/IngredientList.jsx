@@ -1,17 +1,30 @@
-import React from 'react';
+import { useContext } from 'react';
 import classes from './IngredientList.module.css';
-import PropTypes from "prop-types";
 import IngredientItem from '../IngredientItem/IngredientItem';
-import {ingredientsPropTypes, _BUN, _SAUCE, _MAIN} from "../../utils/standards";
+import PropTypes from "prop-types";
+import {ingredientsPropTypes, _BUN, _SAUCE, _MAIN} from "../../utilities/standards";
+import { IngredientDataContext } from "../../context/IngredientDataContext"
+import { IngredientItemsContext } from "../../context/IngredientItemsContext"
 
-const IngredientList = ({ingredients}) => {
+const IngredientList = () => {
+
+    const ingredientItems = useContext(IngredientDataContext);
+    const sortedItems = useContext(IngredientItemsContext);
+
+    const addedItems = sortedItems.map((item) => item._id);
+
     return (
         <div className={classes.ingredientList}>
                 <p className={`${classes.section_header} text text_type_main-medium mt-10`}>Buns</p>
                 <div className={classes.ingredientSection}>
                     <div className={classes.ingredientSection_grid}>
-                        {ingredients.map((item, index) => (item.type === _BUN 
-                        ? (<IngredientItem item={item} key={index} /> ) 
+                        {ingredientItems.map((item, index) => (item.type === _BUN 
+                        ? 
+                        (<IngredientItem 
+                            item={item} 
+                            key={item._id} 
+                            count={addedItems.indexOf(item._id) >= 0 ? 1 : null}
+                        /> ) 
                         : null)
                         )}
                     </div>
@@ -19,8 +32,13 @@ const IngredientList = ({ingredients}) => {
                 <p className="text text_type_main-medium mt-10">Sauses</p>
                 <div className={classes.ingredientSection}>
                     <div className={classes.ingredientSection_grid}>
-                        {ingredients.map((item, index) => (item.type === _SAUCE 
-                        ? (<IngredientItem item={item} key={index} />)
+                        {ingredientItems.map((item, index) => (item.type === _SAUCE 
+                        ? 
+                        (<IngredientItem 
+                            item={item} 
+                            key={item._id} 
+                            count={addedItems.indexOf(item._id) >= 0 ? 1 : null}
+                        /> ) 
                         : null)
                         )}
                     </div>
@@ -28,8 +46,13 @@ const IngredientList = ({ingredients}) => {
                 <p className="text text_type_main-medium mt-10">Toppings</p>
                 <div className={classes.ingredientSection}>
                     <div className={classes.ingredientSection_grid}>
-                        {ingredients.map((item, index) => (item.type === _MAIN 
-                        ? (<IngredientItem item={item} key={index} />)
+                        {ingredientItems.map((item, index) => (item.type === _MAIN 
+                        ? 
+                        (<IngredientItem 
+                            item={item} 
+                            key={item._id} 
+                            count={addedItems.indexOf(item._id) >= 0 ? 1 : null}
+                        /> ) 
                         : null)
                         )}
                     </div>
@@ -40,7 +63,7 @@ const IngredientList = ({ingredients}) => {
 };
 
 IngredientList.propTypes = {
-    ingredients: PropTypes.arrayOf(ingredientsPropTypes),
+    ingredientItems: PropTypes.arrayOf(ingredientsPropTypes),
 };
 
 export default IngredientList;
