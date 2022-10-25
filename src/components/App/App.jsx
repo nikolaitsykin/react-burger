@@ -3,8 +3,8 @@ import classes from './Main.module.css';
 import AppHeader from '../AppHeader/AppHeader';
 import BurgerIngredients from '../BurgerIngredients/BurgerIngredients';
 import BurgerConstructor from '../BurgerConstructor/BurgerConstructor';
-import { fetchRequest } from '../../utilities/fetchRequests';
-import { _ITEMS_URL, sortIngredients } from '../../utilities/standards';
+import { fetchGet } from '../../utils/fetchRequests';
+import { _ITEMS_URL, sortIngredients } from '../../utils/constants';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 import {IngredientDataContext} from "../../context/IngredientDataContext";
 import {IngredientItemsContext} from "../../context/IngredientItemsContext";
@@ -18,8 +18,11 @@ function App() {
   const sortData = useCallback(() => sortIngredients(data), [data]);
 
   useEffect(() => {
-    fetchRequest(_ITEMS_URL, setData);
+    fetchGet(_ITEMS_URL)
+      .then(({ data }) => setData(data))
+      .catch((error) => console.log(error));
   }, []);
+
 
   useEffect(() => setSorted(sortData), [setSorted, sortData]);
 

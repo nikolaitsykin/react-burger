@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import classes from './IngredientList.module.css';
 import IngredientItem from '../IngredientItem/IngredientItem';
 import PropTypes from "prop-types";
-import {ingredientsPropTypes, _BUN, _SAUCE, _MAIN} from "../../utilities/standards";
+import {ingredientsPropTypes, _BUN, _SAUCE, _MAIN} from "../../utils/constants";
 import { IngredientDataContext } from "../../context/IngredientDataContext"
 import { IngredientItemsContext } from "../../context/IngredientItemsContext"
 

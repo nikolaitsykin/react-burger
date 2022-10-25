@@ -1,7 +1,7 @@
 import classes from './IngredientItem.module.css';
 import PropTypes from "prop-types";
 import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import { ingredientsPropTypes } from "../../utilities/standards";
+import { ingredientsPropTypes } from "../../utils/constants";
 import Modal from '../Modal/Modal';
 import IngredientDetails from '../IngredientDetails/IngredientDetails'
 import { useModal } from '../../hooks/useModal';

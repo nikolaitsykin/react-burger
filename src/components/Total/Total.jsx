@@ -8,15 +8,15 @@ import OrderDetails from '../OrderDetails/OrderDetails';
 import { useModal } from '../../hooks/useModal';
 import { IngredientItemsContext } from "../../context/IngredientItemsContext";
 import { OrderIdContext } from "../../context/OrderIdContext"
-import reducer from "../../reducers/TotalReducer";
-import { _ITEMS_URL } from '../../utilities/standards';
-import { fetchPost } from "../../utilities/fetchRequests";
+import { reducer } from "../../services/reducers/TotalReducer";
+import { _ORDER_URL } from '../../utils/constants';
+import { fetchPost } from "../../utils/fetchRequests";
 
 export const Total = () => {
     const ingredientItems = useContext(IngredientItemsContext);
     const {isModalActive, toggleModal, onClose} = useModal();
     
-    const [setOrderIdData] = useState(useContext(OrderIdContext));
+    const [orderIdData, setOrderIdData] = useState(useContext(OrderIdContext));
 
     const initialTotalValue = { total: 0 };
 
@@ -37,17 +37,17 @@ export const Total = () => {
     const data = ingredientItems.map((item) => item._id);
 
 
-    const handleOrderClick = () => {
-        fetchPost(_ITEMS_URL, { main: data })
-          .then((data) => {
+    const getOrderId= () => {
+        fetchPost(_ORDER_URL, { ingredients: data })
+        .then((data) => {
             setOrderIdData({
-              number: data.order.number,
-              name: data.name,
+                number: data.order.number,
+                name: data.name,
             });
-            toggleModal(true);
-          })
-          .catch((err) => console.log(err));
-      };
+        toggleModal(true);
+        })
+        .catch((err) => console.log(err));
+    };
 
     return (
         <div className={classes.container}>
@@ -59,7 +59,7 @@ export const Total = () => {
                 htmlType={"submit"}
                 type="primary"
                 size="large"
-                onClick={handleOrderClick}
+                onClick={getOrderId}
                 >
                 Proceed to checkout
             </Button>
@@ -67,7 +67,9 @@ export const Total = () => {
                 <Modal 
                     onClose={onClose}
                     isOpened={isModalActive}>
-                    <OrderDetails />
+                    <OrderIdContext.Provider value={orderIdData}>
+                        <OrderDetails />
+                    </OrderIdContext.Provider>
                 </Modal>
             )}
         </div>

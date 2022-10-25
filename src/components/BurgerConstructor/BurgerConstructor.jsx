@@ -3,7 +3,7 @@ import classes from './BurgerConstructor.module.css';
 import PropTypes from "prop-types";
 import Total from '../Total/Total';
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import { ingredientsPropTypes, _BUN } from '../../utilities/standards';
+import { ingredientsPropTypes, _BUN } from '../../utils/constants';
 import { IngredientItemsContext } from "../../context/IngredientItemsContext";
 
 export const BurgerConstructor = () => {

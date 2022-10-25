@@ -21,7 +21,7 @@ export const _MAIN = "main"
 
 export const _MAIN_URL = "https://norma.nomoreparties.space/api";
 export const _ITEMS_URL = `${_MAIN_URL}/ingredients`;
-export const ORDER_URL = `${_MAIN_URL}/order`;
+export const _ORDER_URL = `${_MAIN_URL}/orders`;
 
 
 export const sortIngredients = (data) => {
