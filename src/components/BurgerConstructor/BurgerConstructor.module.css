@@ -1,40 +1,40 @@
 .container {
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    max-height: calc(100vh - 70px);
-    width: 600px;
-    padding: 100px 0 50px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: calc(100vh - 70px);
+  width: 600px;
+  padding: 100px 0 50px;
 }
 
 .componentList {
-    overflow: scroll;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    align-self: flex-start;
-    gap: 10px;
+  overflow: scroll;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+  gap: 10px;
 
-    scrollbar-color: #8585AD;
-    scrollbar-width: 4px;
+  scrollbar-color: #8585ad;
+  scrollbar-width: 4px;
 }
 
 .item {
-    display: flex;
-    align-items: center;
-    width: 100%;
+  display: flex;
+  align-items: center;
+  width: 100%;
 }
 
 .componentList::-webkit-scrollbar {
-    width: 8px;
-    height: calc(100% - 50px);
+  width: 8px;
+  height: calc(100% - 50px);
 }
 
 .componentList::-webkit-scrollbar-track {
-    background-color: #2F2F37;
+  background-color: #2f2f37;
 }
 
 .componentList::-webkit-scrollbar-thumb {
-    background-color: #8585AD;
+  background-color: #8585ad;
 }

@@ -1,11 +1,11 @@
 .container {
-    justify-self: end;
+  justify-self: end;
 }
 
 .navItem {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    text-decoration: none;
-    color: #fff;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+  color: #fff;
 }
