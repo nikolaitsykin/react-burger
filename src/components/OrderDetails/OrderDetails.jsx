@@ -1,27 +1,33 @@
-import React from 'react';
-import classes from './OrderDetails.module.css';
-import doneImg from '../../images/done_img.svg'
+import React, { useContext } from "react";
+import classes from "./OrderDetails.module.css";
+import doneImg from "../../images/done_img.svg";
+import { OrderIdContext } from "../../context/OrderIdContext";
 
 const OrderDetails = () => {
-    return (
-        <div className={classes.container}>
-            <div className={classes.order_number}>
-                <p className='text text_type_digits-large mb-8'>034546</p>
-                <p className='text text_type_main-medium mb-15'>oreder ID</p>
-            </div>
-            <div className={classes.image}>
-                <img src={doneImg} className="mb-15" alt="The order has been successfully placed" />
-            </div>
-            <div className={classes.order_status}>
-                <p className='text text_type_main-default mb-2'>
-                    We have started to cook your order
-                </p>
-                <p className='text text_type_main-default text_color_inactive mb-15'>
-                    Wait for the order at the orbital station
-                </p>
-            </div>
-        </div>
-    );
+  const orderIdData = useContext(OrderIdContext);
+  return (
+    <div className={classes.container}>
+      <div className={classes.order_number}>
+        <p className="text text_type_digits-large mb-8">{orderIdData.number}</p>
+        <p className="text text_type_main-medium mb-15">{orderIdData.name}</p>
+      </div>
+      <div className={classes.image}>
+        <img
+          src={doneImg}
+          className="mb-15"
+          alt="The order has been successfully placed"
+        />
+      </div>
+      <div className={classes.order_status}>
+        <p className="text text_type_main-default mb-2">
+          We have started to cook your order
+        </p>
+        <p className="text text_type_main-default text_color_inactive mb-15">
+          Wait for the order at the orbital station
+        </p>
+      </div>
+    </div>
+  );
 };
 
 export default OrderDetails;

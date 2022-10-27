@@ -1,9 +1,17 @@
 .container {
-    position: fixed;
-    inset: 0;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(0, 0, 0, 0.2);;
+  position: fixed;
+  inset: 0;
+  padding: 40px;
+  box-sizing: border-box;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal_overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 60%);
+  cursor: pointer;
 }

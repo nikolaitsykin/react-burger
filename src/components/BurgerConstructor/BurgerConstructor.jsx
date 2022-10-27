@@ -1,64 +1,60 @@
-import React, { useMemo } from 'react';
-import classes from './BurgerConstructor.module.css';
-import PropTypes from "prop-types";
-import Total from '../Total/Total';
-import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import { ingredientsPropTypes, _BUN } from '../../utils/standards';
+import { useContext } from "react";
+import classes from "./BurgerConstructor.module.css";
+import Total from "../Total/Total";
+import {
+  ConstructorElement,
+  DragIcon,
+} from "@ya.praktikum/react-developer-burger-ui-components";
+import { _BUN } from "../../utils/constants";
+import { IngredientItemsContext } from "../../context/IngredientItemsContext";
 
-const BurgerConstructor = ({data}) => {
+export const BurgerConstructor = () => {
+  const ingredientItems = useContext(IngredientItemsContext);
 
-    const total = useMemo(
-        () => data.map((item) => item.price).reduce((a, b) => a + b, 0),
-        [data]);
-
-    return (
-        <>
+  return (
+    <>
+      {ingredientItems.length && (
         <div className={classes.container}>
-            <div className={"pl-6"}>
-                <ConstructorElement
-                    key={0}
-                    type="top"
-                    isLocked
-                    text={data?.[0]?.name}
-                    price={data?.[0]?.price}
-                    thumbnail={data?.[0]?.image}
-                />
-            </div>
-            <div className={classes.componentList}>
-                {data &&
-                data.length &&
-                data.map((item) => {
-                return item.type !== _BUN ? (
-                    <div key={item._id} className={classes.item}>
-                    <DragIcon type="primary" />
-                    <ConstructorElement
-                        text={item.name}
-                        price={item.price}
-                        thumbnail={item.image}
-                    />
-                    </div>
-                    ) : null;
-                })}
-            </div>
-            <div className={"pl-6"}>
-                <ConstructorElement
-                    key={1}
-                    type="bottom"
-                    isLocked={true}
-                    text={data?.[0]?.name}
-                    price={data?.[0]?.price}
-                    thumbnail={data?.[0]?.image}
-                />
-            </div>
-            <Total value={total}/>
+          <div className={"pl-6"}>
+            <ConstructorElement
+              key={ingredientItems[0]._id}
+              type="top"
+              isLocked
+              text={ingredientItems[0].name + "(top)"}
+              price={ingredientItems[0].price}
+              thumbnail={ingredientItems[0].image}
+            />
+          </div>
+          <div className={classes.componentList}>
+            {ingredientItems.map((ingredientItems) => {
+              return ingredientItems.type !== _BUN ? (
+                <div key={ingredientItems._id} className={classes.item}>
+                  <DragIcon type="primary" />
+                  <ConstructorElement
+                    key={ingredientItems._id}
+                    text={ingredientItems.name}
+                    price={ingredientItems.price}
+                    thumbnail={ingredientItems.image}
+                  />
+                </div>
+              ) : null;
+            })}
+          </div>
+          <div className={"pl-6"}>
+            <ConstructorElement
+              key={ingredientItems[0]._id}
+              type="bottom"
+              isLocked={true}
+              text={ingredientItems[0].name + "(bottom)"}
+              price={ingredientItems[0].price}
+              thumbnail={ingredientItems[0].image}
+            />
+          </div>
+          <Total />
         </div>
-        </>
-    );
-};
-
-
-BurgerConstructor.propTypes = {
-    data: PropTypes.arrayOf(ingredientsPropTypes),
+      )}
+    </>
+  );
 };
 
 export default BurgerConstructor;
