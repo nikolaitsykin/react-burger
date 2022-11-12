@@ -7,11 +7,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: rgba(0, 0, 0, 30%);
 }
 
-.modal_overlay {
+.overlay {
   position: absolute;
-  inset: 0;
-  background-color: rgba(0, 0, 0, 60%);
+  inset: 1;
   cursor: pointer;
 }

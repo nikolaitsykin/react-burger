@@ -26,6 +26,17 @@
   width: 100%;
 }
 
+.element {
+  position: relative;
+}
+
+.element::before {
+  position: absolute;
+  inset: 0;
+  content: "";
+  z-index: 1;
+}
+
 .componentList::-webkit-scrollbar {
   width: 8px;
   height: calc(100% - 50px);

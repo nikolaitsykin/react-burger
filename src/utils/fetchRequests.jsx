@@ -18,6 +18,7 @@ export const fetchGet = (url) => {
 export const fetchPost = (url, data) => {
   const promise = fetch(url, {
     method: "POST",
+    mode: "no-cors",
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json: charset=utf-8",
