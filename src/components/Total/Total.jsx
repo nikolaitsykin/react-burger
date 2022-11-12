@@ -14,7 +14,7 @@ export const Total = () => {
     (state) => state.ingredientItems
   );
 
-  const data = useMemo(() => {
+  const dataIds = useMemo(() => {
     return (
       selectedIngredients &&
       selectedBun && [
@@ -34,7 +34,7 @@ export const Total = () => {
         htmlType={"submit"}
         type="primary"
         size="large"
-        onClick={() => dispatch(orderData(data))}
+        onClick={() => dispatch(orderData(dataIds))}
       >
         Proceed to checkout
       </Button>

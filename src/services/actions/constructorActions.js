@@ -17,6 +17,8 @@ export function orderData(orderData) {
         dispatch({ type: OPEN_ORDER_MODAL });
         dispatch({ type: RESET_CONSTRUCTOR });
       })
-      .catch(() => dispatch({ type: MAKE_ORDER_FAILED }));
+      .catch((error) => {
+        dispatch({ type: MAKE_ORDER_FAILED });
+      });
   };
 }

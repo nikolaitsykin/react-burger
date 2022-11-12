@@ -45,7 +45,7 @@ export const BurgerConstructor = () => {
     return "Error";
   } else if (selectedIngredients) {
     return (
-      <section
+      <div
         className={classes.container}
         ref={ingredientDropTarget}
       >
@@ -90,7 +90,7 @@ export const BurgerConstructor = () => {
           />
         </div>
         <Total />
-      </section>
+      </div>
     );
   }
 };

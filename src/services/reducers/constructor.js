@@ -19,26 +19,26 @@ export const burgerConstructor = (state = initialState, action) => {
     case OPEN_ORDER_MODAL: {
       return {
         ...state,
-        isOrderModalOpen: true,
+        isOrderModalOpened: true,
       };
     }
     case CLOSE_ORDER_MODAL: {
       return {
         ...state,
-        isOrderModalOpen: false,
+        isOrderModalOpened: false,
       };
     }
     case MAKE_ORDER: {
       return {
         ...state,
-        isRequest: true,
-        isRequestError: false,
+        isRequested: true,
+        isRequestedError: false,
       };
     }
     case MAKE_ORDER_SUCCESS: {
       return {
         ...state,
-        isRequest: false,
+        isRequested: false,
         orderName: action.payload.name,
         orderNumber: action.payload.order.number,
       };
@@ -46,8 +46,8 @@ export const burgerConstructor = (state = initialState, action) => {
     case MAKE_ORDER_FAILED: {
       return {
         ...state,
-        isRequest: false,
-        isRequestError: true,
+        isRequested: false,
+        isRequestededError: true,
       };
     }
     default:

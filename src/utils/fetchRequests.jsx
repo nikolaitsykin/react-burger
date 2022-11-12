@@ -15,15 +15,13 @@ export const fetchGet = (url) => {
   return checkPromise(promise);
 };
 
-export const fetchPost = (url, data) => {
+export const fetchPost = (url, orderData) => {
   const promise = fetch(url, {
     method: "POST",
-    mode: "no-cors",
     headers: {
       "Content-Type": "application/json",
-      Accept: "application/json: charset=utf-8",
     },
-    body: JSON.stringify(data),
+    body: JSON.stringify({ ingredients: orderData }),
   });
   return checkPromise(promise);
 };
