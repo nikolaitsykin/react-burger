@@ -5,7 +5,7 @@
   width: 272px;
   height: 208px;
   flex-direction: column;
-  cursor: pointer;
+  cursor: grab;
 }
 
 .top {
@@ -39,4 +39,9 @@
 
 .counter {
   position: absolute;
+}
+
+.dragging {
+  opacity: 0.5;
+  cursor: grabbing;
 }

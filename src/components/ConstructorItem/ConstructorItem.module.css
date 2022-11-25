@@ -1,0 +1,16 @@
+.item {
+  display: flex;
+  align-items: center;
+  border: 1px solid transparent;
+  cursor: grab;
+}
+
+.item > svg {
+  cursor: grab;
+  margin-right: 6px;
+}
+
+.dragging {
+  opacity: 0.5;
+  cursor: grabbing;
+}

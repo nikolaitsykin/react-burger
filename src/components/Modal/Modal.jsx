@@ -5,14 +5,15 @@ import ModalOverlay from "../ModalOverlay/ModalOverlay";
 import ModalHeader from "../ModalHeader/ModalHeader";
 
 const Modal = ({ isOpened, header, onClose, children }) => {
-  const onEscape = (event) => {
-    event.preventDefault();
-    if (event.key === "Escape") {
-      onClose();
-    }
-  };
-
   useEffect(() => {
+    if (!isOpened) return;
+
+    const onEscape = (event) => {
+      if (event.key === "Escape") {
+        onClose();
+      }
+    };
+
     window.addEventListener("keydown", onEscape);
 
     return () => {
@@ -21,7 +22,7 @@ const Modal = ({ isOpened, header, onClose, children }) => {
   });
 
   return (
-    <ModalOverlay isOpened={isOpened}>
+    <ModalOverlay isOpened={isOpened} onClose={onClose}>
       <div className={classes.container}>
         <ModalHeader onClose={onClose} header={header} />
         {children}
@@ -34,7 +35,7 @@ Modal.propTypes = {
   isOpened: PropTypes.bool.isRequired,
   header: PropTypes.string,
   onClose: PropTypes.func.isRequired,
-  children: PropTypes.any,
+  children: PropTypes.element.isRequired,
 };
 
 export default Modal;

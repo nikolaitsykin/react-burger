@@ -10,8 +10,8 @@ const ModalOverlay = ({ children, isOpened, onClose }) => {
 
   return (
     <Portal>
-      <div className={classes.container}>
-        <div className={classes.ovelay} onClick={onClose}>
+      <div className={classes.container} onClick={onClose}>
+        <div className={classes.overlay} onClick={(e) => e.stopPropagation()}>
           {children}
         </div>
       </div>
@@ -21,6 +21,7 @@ const ModalOverlay = ({ children, isOpened, onClose }) => {
 
 ModalOverlay.propTypes = {
   isOpened: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
   children: PropTypes.element.isRequired,
 };
 

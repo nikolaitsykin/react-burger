@@ -1,15 +1,13 @@
-import React, { useContext } from "react";
+import React from "react";
 import classes from "./OrderDetails.module.css";
 import doneImg from "../../images/done_img.svg";
-import { OrderIdContext } from "../../context/OrderIdContext";
 
-const OrderDetails = () => {
-  const orderIdData = useContext(OrderIdContext);
+const OrderDetails = ({ name, number }) => {
   return (
     <div className={classes.container}>
       <div className={classes.order_number}>
-        <p className="text text_type_digits-large mb-8">{orderIdData.number}</p>
-        <p className="text text_type_main-medium mb-15">{orderIdData.name}</p>
+        <p className="text text_type_digits-large mb-8">{number}</p>
+        <p className="text text_type_main-medium mb-15">{name}</p>
       </div>
       <div className={classes.image}>
         <img
