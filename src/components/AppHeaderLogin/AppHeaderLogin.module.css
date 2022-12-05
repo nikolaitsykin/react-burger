@@ -1,11 +1,21 @@
-.container {
+.nav_container {
   justify-self: end;
 }
 
-.navItem {
+.nav_item {
   display: flex;
   align-items: center;
   cursor: pointer;
   text-decoration: none;
-  color: #fff;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.nav_item:hover p {
+  color: #ffffff;
+  transition: all 0.2s linear;
+}
+.nav_item:hover svg {
+  transition: all 0.2s linear;
+  fill: #fff;
 }

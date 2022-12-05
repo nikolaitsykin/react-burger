@@ -1,9 +1,7 @@
 import {
-  MAKE_ORDER,
+  CLOSE_ORDER_MODAL, MAKE_ORDER,
   MAKE_ORDER_FAILED,
-  MAKE_ORDER_SUCCESS,
-  CLOSE_ORDER_MODAL,
-  OPEN_ORDER_MODAL,
+  MAKE_ORDER_SUCCESS, OPEN_ORDER_MODAL
 } from "../actions/constructorActions";
 
 const initialState = {
@@ -48,6 +46,8 @@ export const burgerConstructor = (state = initialState, action) => {
         ...state,
         isRequested: false,
         isRequestededError: true,
+        orderNumber: null,
+        orderName: null,
       };
     }
     default:

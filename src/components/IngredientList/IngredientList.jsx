@@ -1,10 +1,10 @@
-import React, { useEffect, useRef } from "react";
-import classes from "./IngredientList.module.css";
-import IngredientItem from "../IngredientItem/IngredientItem";
-import { _BUN, _SAUCE, _MAIN } from "../../utils/constants";
-import { CHOOSE_TAB } from "../../services/actions/ingredientsActions";
+import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getIngredients } from "../../services/reducers/ingredients";
+import { CHOOSE_TAB } from "../../services/actions/ingredientsActions";
+import { _BUN, _MAIN, _SAUCE } from "../../utils/constants";
+import IngredientItem from "../IngredientItem/IngredientItem";
+import Loader from "../Loader/Loader";
+import classes from "./IngredientList.module.css";
 
 const IngredientList = () => {
   const { isRequested, isRequestedError, bun, sauce, main } = useSelector(
@@ -16,10 +16,6 @@ const IngredientList = () => {
   const bunRef = useRef();
   const sauceRef = useRef();
   const mainRef = useRef();
-
-  useEffect(() => {
-    dispatch(getIngredients());
-  }, [dispatch]);
 
   const selectTab = () => {
     const buns = Math.abs(
@@ -46,7 +42,15 @@ const IngredientList = () => {
 
   if (isRequestedError) {
     return "Error";
-  } else if (isRequested)
+  } else if (isRequested) {
+    return (
+      <div
+        style={{ display: "flex", justifyContent: "center", marginTop: 100 }}
+      >
+        <Loader />
+      </div>
+    );
+  } else
     return (
       <div
         className={classes.ingredientList}

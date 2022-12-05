@@ -1,7 +1,7 @@
 import React from "react";
-import classes from "./BurgerIngredients.module.css";
-import Tabs from "../Tabs/Tabs";
 import IngredientList from "../IngredientList/IngredientList";
+import Tabs from "../Tabs/Tabs";
+import classes from "./BurgerIngredients.module.css";
 
 const BurgerIngredients = () => {
   return (

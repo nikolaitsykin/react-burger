@@ -1,59 +1,69 @@
-import React from "react";
-import classes from "./Main.module.css";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { Route, Router, useHistory, useLocation } from "react-router-dom";
+import IngredientsPage from "../../pages/ingredients/ingredients";
+import { getIngredients } from "../../services/reducers/ingredients";
 import AppHeader from "../AppHeader/AppHeader";
-import BurgerIngredients from "../BurgerIngredients/BurgerIngredients";
-import BurgerConstructor from "../BurgerConstructor/BurgerConstructor";
-import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
-import { useDispatch, useSelector } from "react-redux";
-import IngredientDetails from "../IngredientDetails/IngredientDetails";
-import OrderDetails from "../OrderDetails/OrderDetails";
+import AppRouter from "../AppRouter/AppRouter";
 import Modal from "../Modal/Modal";
-import { CLOSE_INGREDIENT_ITEMS_MODAL } from "../../services/actions/ingredientsActions";
-import { DndProvider } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
-import { CLOSE_ORDER_MODAL } from "../../services/actions/constructorActions";
+import classes from "./Main.module.css";
+import { MODAL_CLOSE, MODAL_OPEN } from "../../services/actions/modal";
 
 function App() {
   const dispatch = useDispatch();
-  const { isIngredientModalOpened, selectedIngredient } = useSelector(
-    (state) => state.ingredientItems
-  );
-  const { isOrderModalOpened, orderName, orderNumber } = useSelector(
-    (state) => state.burgerConstructor
-  );
 
-  const onCloseIngredientModal = () => {
-    dispatch({ type: CLOSE_INGREDIENT_ITEMS_MODAL });
+  useEffect(() => {
+    dispatch(getIngredients());
+  }, [dispatch]);
+
+  const history = useHistory();
+  const location = useLocation();
+
+  const ModalSwitch = () => {
+
+    const background = location.state && location.state.background;
+
+    useEffect(() => {
+      if (background) {
+        dispatch({ type: MODAL_OPEN });
+      }
+    });
+
+    const handleModalClose = () => {
+      history.goBack();
+      dispatch({ type: MODAL_CLOSE });
+    };
+
+    return (
+      <React.StrictMode>
+        <AppHeader />
+        <main className={classes.main}>
+          <AppRouter location={background || location} />
+
+          {background && (
+            <Route
+              path="/ingredients/:ingredientId"
+              children={
+                <Modal
+                  onClose={() => handleModalClose()}
+                  title="Ingredient details"
+                  isOpened={false}
+                >
+                  <IngredientsPage />
+                </Modal>
+              }
+            />
+          )}
+        </main>
+      </React.StrictMode>
+    );
   };
-
-  const onCloseOrderModal = () => {
-    dispatch({ type: CLOSE_ORDER_MODAL });
-  };
-
   return (
-    <ErrorBoundary>
-      <AppHeader />
-      <main className={classes.main}>
-        <DndProvider backend={HTML5Backend}>
-          <BurgerIngredients />
-          <BurgerConstructor />
-        </DndProvider>
-      </main>
-      {isOrderModalOpened && (
-        <Modal onClose={onCloseOrderModal} isOpened={isOrderModalOpened}>
-          <OrderDetails name={orderName} number={orderNumber} />
-        </Modal>
-      )}
-      {isIngredientModalOpened && (
-        <Modal
-          onClose={onCloseIngredientModal}
-          isOpened={isIngredientModalOpened}
-          header={"Ingredient details"}
-        >
-          <IngredientDetails item={selectedIngredient} />
-        </Modal>
-      )}
-    </ErrorBoundary>
+    <div>
+      <Router history={history}>
+        <ModalSwitch />
+      </Router>
+    </div>
   );
 }
 

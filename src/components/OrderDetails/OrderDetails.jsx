@@ -1,6 +1,6 @@
 import React from "react";
-import classes from "./OrderDetails.module.css";
 import doneImg from "../../images/done_img.svg";
+import classes from "./OrderDetails.module.css";
 
 const OrderDetails = ({ name, number }) => {
   return (

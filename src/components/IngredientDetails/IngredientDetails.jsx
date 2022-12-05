@@ -1,7 +1,7 @@
 import React from "react";
-import classes from "./IngredientDetails.module.css";
 import { ingredientsPropTypes } from "../../utils/constants";
 import DetailsProperties from "../DetailProperties/DetailProperties";
+import classes from "./IngredientDetails.module.css";
 
 const IngredientDetails = ({ item }) => {
   return (

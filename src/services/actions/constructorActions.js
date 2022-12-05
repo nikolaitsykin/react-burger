@@ -1,5 +1,5 @@
-import { fetchPost } from "../../utils/fetchRequests";
 import { _ORDER_URL } from "../../utils/constants";
+import { fetchPost } from "../../utils/api";
 import { RESET_CONSTRUCTOR } from "./ingredientsActions";
 
 export const OPEN_ORDER_MODAL = "OPEN_ORDER_MODAL";

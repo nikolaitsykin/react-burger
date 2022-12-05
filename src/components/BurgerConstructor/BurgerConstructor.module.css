@@ -20,16 +20,6 @@
   scrollbar-width: 4px;
 }
 
-.item {
-  display: flex;
-  align-items: center;
-  width: 100%;
-}
-
-.element {
-  position: relative;
-}
-
 .element::before {
   position: absolute;
   inset: 0;

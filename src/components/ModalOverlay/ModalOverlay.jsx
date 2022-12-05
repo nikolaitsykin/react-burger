@@ -1,7 +1,7 @@
 import React from "react";
-import classes from "./ModalOverlay.module.css";
 import PropTypes from "prop-types";
 import Portal from "../Portal/Portal";
+import classes from "./ModalOverlay.module.css";
 
 const ModalOverlay = ({ children, isOpened, onClose }) => {
   if (!isOpened) {

@@ -1,13 +1,13 @@
-import React, { useCallback } from "react";
-import classes from "./BurgerConstructor.module.css";
-import Total from "../Total/Total";
 import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useDispatch, useSelector } from "react-redux";
+import { useCallback } from "react";
 import { useDrop } from "react-dnd";
-import ConstructorItem from "../ConstructorItem/ConstructorItem";
+import { useDispatch, useSelector } from "react-redux";
 import no_image from "../../images/no_image.png";
 import { UPDATE_SELECTED_INGREDIENT_ITEMS } from "../../services/actions/ingredientsActions";
 import { addIngredient } from "../../services/reducers/ingredients";
+import ConstructorItem from "../ConstructorItem/ConstructorItem";
+import Total from "../Total/Total";
+import classes from "./BurgerConstructor.module.css";
 
 export const BurgerConstructor = () => {
   const { selectedBun, selectedIngredients, isRequestedError } = useSelector(
@@ -45,13 +45,9 @@ export const BurgerConstructor = () => {
     return "Error";
   } else if (selectedIngredients) {
     return (
-      <div
-        className={classes.container}
-        ref={ingredientDropTarget}
-      >
+      <div className={classes.container} ref={ingredientDropTarget}>
         <div className={"pl-6"}>
           <ConstructorElement
-            className={classes.element}
             type="top"
             isLocked
             text={

@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
-import classes from "./Modal.module.css";
+import React from "react";
 import PropTypes from "prop-types";
-import ModalOverlay from "../ModalOverlay/ModalOverlay";
+import { useEffect } from "react";
 import ModalHeader from "../ModalHeader/ModalHeader";
+import ModalOverlay from "../ModalOverlay/ModalOverlay";
+import classes from "./Modal.module.css";
 
 const Modal = ({ isOpened, header, onClose, children }) => {
   useEffect(() => {
