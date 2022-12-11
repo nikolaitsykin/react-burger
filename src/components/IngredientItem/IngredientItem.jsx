@@ -1,6 +1,6 @@
 import {
   Counter,
-  CurrencyIcon
+  CurrencyIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from "prop-types";
 import { useDrag } from "react-dnd";
@@ -20,14 +20,18 @@ const IngredientItem = ({ item }) => {
 
   return (
     !isDrag && (
-      <Link className={classes.ingredient_link}
+      <Link
+        className={classes.ingredient_link}
         to={{
           pathname: `/ingredients/${ingredientId}`,
           state: { background: location },
         }}
         key={ingredientId}
       >
-        <div className={classes.container} ref={dragRef}>
+        <div
+          className={classes.container}
+          ref={dragRef}
+        >
           <div className={classes.top}>
             {item.count > 0 && (
               <Counter

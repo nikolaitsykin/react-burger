@@ -4,7 +4,7 @@ import classes from "./AppHeaderLogin.module.css";
 
 const AppHeaderLogin = () => {
   const location = useLocation();
-  let isActive = location.pathname.includes("profile");
+  const isActive = location.pathname.includes("profile");
 
   return (
     <div className={classes.nav_container}>

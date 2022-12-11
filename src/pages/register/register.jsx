@@ -9,7 +9,7 @@ import { Link, Redirect, useHistory, useLocation } from "react-router-dom";
 import { getCookie, registerPost } from "../../utils/api";
 import { useDispatch, useSelector } from "react-redux";
 import { checkUser } from "../../services/actions/auth";
-import { _REGISTER_URL } from "../../utils/constants";
+import { _LOGIN_PATH, _REGISTER_URL, _ROOT_PATH } from "../../utils/constants";
 import classes from "./register.module.css";
 
 const RegisterPage = () => {
@@ -42,7 +42,7 @@ const RegisterPage = () => {
   const register = (e) => {
     e.preventDefault();
     registerPost(_REGISTER_URL, state.email, state.password, state.name)
-      .then(() => history.replace("/"))
+      .then(() => history.replace(_ROOT_PATH))
       .catch((res) => console.log(res));
   };
 
@@ -85,12 +85,12 @@ const RegisterPage = () => {
           Sign Up
         </Button>
         <p className="text text_type_main-default mb-4">
-          Already registred? <Link to="/login">Log In</Link>
+          Already registred? <Link to={_LOGIN_PATH}>Log In</Link>
         </p>
       </form>
     );
   } else {
-    return <Redirect to={location?.state?.from.pathname || "/"} />;
+    return <Redirect to={location?.state?.from.pathname || _ROOT_PATH} />;
   }
 };
 

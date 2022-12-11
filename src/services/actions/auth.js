@@ -1,4 +1,4 @@
-import { _LOGIN_URL, _LOGOUT_URL } from "../../utils/constants";
+import { _LOGIN_URL, _LOGOUT_URL, _LOGIN_PATH } from "../../utils/constants";
 import {
   deleteCookie,
   getCookie,
@@ -17,9 +17,9 @@ export const REFRESH_USER = "REFRESH_USER";
 export const RESET_USER = "RESET_USER";
 export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
 
-export const login = (postData, history) => {
+export const login = (values, history) => {
   return function (dispatch) {
-    loginPost(_LOGIN_URL, postData)
+    loginPost(_LOGIN_URL, values)
       .then((res) => {
         let accessToken;
         if (res.accessToken.indexOf("Bearer") === 0)
@@ -27,13 +27,15 @@ export const login = (postData, history) => {
         else accessToken = res.accessToken;
         dispatch({
           type: SET_USER,
-          user: { ...res.user, password: postData.password },
+          user: { ...res.user, password: values.password },
           isAuth: true,
+          token: accessToken,
+
         });
         setCookie("refreshToken", res.refreshToken);
         setCookie("token", accessToken);
       })
-      .then(() => history.replace({ pathname: "/login" }))
+      .then(() => history.replace({ pathname: _LOGIN_PATH }))
       .catch((err) => {
         console.log(err);
       });
@@ -50,7 +52,7 @@ export const logout = (token, history) => {
         deleteCookie("token", oldAccessTokenCookie);
       })
       .then(() => {
-        history.replace("/login");
+        history.replace(_LOGIN_PATH);
       })
       .then(() => {
         dispatch({ type: RESET_USER });
@@ -87,12 +89,13 @@ export const refreshUserData = (token) => {
   };
 };
 
-export const patchUserData = (userData, token) => {
+export const patchUserData = (values, token) => {
   return function (dispatch) {
-    return userDataPatch(userData, token).then((res) => {
+    return userDataPatch(values, token).then((res) => {
       setCookie("token", res.accessToken);
       dispatch({
         type: REFRESH_USER,
+        token: res.accessToken,
         user: res.user,
       });
     });

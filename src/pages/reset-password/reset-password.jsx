@@ -9,7 +9,7 @@ import classes from "./reset-password.module.css";
 import { getCookie, setNewPasswordPost } from "../../utils/api";
 import { useDispatch, useSelector } from "react-redux";
 import { checkUser } from "../../services/actions/auth";
-import { _PASSWORD_RESET_URL } from "../../utils/constants";
+import { _FORGOT_PASSWORD_PATH, _LOGIN_PATH, _PASSWORD_RESET_URL } from "../../utils/constants";
 
 const ResetPasswordPage = () => {
   const dispatch = useDispatch();
@@ -22,7 +22,7 @@ const ResetPasswordPage = () => {
   }, [dispatch, token]);
 
   const [state, setState] = React.useState({ password: "", token: "" });
-
+  
   const onChange = (e) => {
     const { target } = e;
     const value = target.value;
@@ -37,11 +37,11 @@ const ResetPasswordPage = () => {
   const newPasswordSet = (e) => {
     e.preventDefault();
     setNewPasswordPost(_PASSWORD_RESET_URL, state.password, state.token).catch(
-      (err) => console.log(err)
+      (err) => (err)
     );
   };
 
-  if (!isAuth && location?.state?.from.pathname === "/forgot-password") {
+  if (!isAuth && location?.state?.from.pathname === _FORGOT_PASSWORD_PATH) {
     return (
       <form
         className={classes.reset_password_container}
@@ -55,6 +55,7 @@ const ResetPasswordPage = () => {
           name={"password"}
           placeholder={"Input new password"}
           extraClass={"mb-6"}
+          autoComplete="current-password"
         />
         <Input
           type={"text"}
@@ -64,7 +65,7 @@ const ResetPasswordPage = () => {
           name={"token"}
           error={false}
           ref={inputRef}
-          errorText={"Ошибка"}
+          errorText={"Error"}
           size={"default"}
           extraClass="mb-6"
         />
@@ -77,12 +78,12 @@ const ResetPasswordPage = () => {
           Send
         </Button>
         <p className="text text_type_main-default mb-4 text_color_inactive">
-          Remembered password? <Link to="/login">Sign In</Link>
+          Remembered password? <Link to={_LOGIN_PATH}>Sign In</Link>
         </p>
       </form>
     );
   } else {
-    <Redirect to={location?.state?.from.pathname || "/forgot-password"} />;
+    <Redirect to={location?.state?.from.pathname || _FORGOT_PASSWORD_PATH} />;
   }
 };
 

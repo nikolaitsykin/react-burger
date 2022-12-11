@@ -10,9 +10,12 @@ import { patchUserData } from "../../services/actions/auth";
 
 const ProfileForm = () => {
   const dispatch = useDispatch();
-  const { name, email, password, token } = useSelector(
-    (store) => store.userData
+  const { name, email, password } = useSelector(
+    (state) => state.userData
   );
+  
+  const token = useSelector((state) => state.userData.token);
+
   const [isChanged, setChanged] = useState(false);
 
   const { values, handleChange, errors, isValid, resetForm } = useAuth({

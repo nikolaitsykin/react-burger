@@ -4,6 +4,7 @@ import classes from "./ProfileSideBar.module.css";
 import { checkUser, logout } from "../../services/actions/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { getCookie } from "../../utils/api";
+import { _PROFILE_PATH, _ROOT_PATH, _ORDERS_PATH } from "../../utils/constants";
 
 const ProfileSideBar = () => {
   const dispatch = useDispatch();
@@ -23,21 +24,19 @@ const ProfileSideBar = () => {
   if (isAuth) {
     return (
       <div className={classes.nav_container}>
-        <Link to="/profile" className={classes.nav_item}>
+        <Link to={_PROFILE_PATH} className={classes.nav_item}>
           <p
             className={`${
-              location.pathname === "/profile" ? "" : "text_color_inactive"
+              location.pathname === _PROFILE_PATH ? "" : "text_color_inactive"
             } text text_type_main-medium pt-4 pr-4 pb-4`}
           >
             Profile
           </p>
         </Link>
-        <Link to="/profile/orders" className={classes.nav_item}>
+        <Link to={_ORDERS_PATH} className={classes.nav_item}>
           <p
             className={`${
-              location.pathname === "/profile/orders"
-                ? ""
-                : "text_color_inactive"
+              location.pathname === _ORDERS_PATH ? "" : "text_color_inactive"
             } text text_type_main-medium pt-4 pr-4 pb-4`}
           >
             Order history
@@ -54,7 +53,7 @@ const ProfileSideBar = () => {
       </div>
     );
   } else {
-    return <Redirect to={location?.state?.from || "/"} />;
+    return <Redirect to={location?.state?.from || _ROOT_PATH} />;
   }
 };
 

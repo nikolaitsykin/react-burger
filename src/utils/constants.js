@@ -29,3 +29,15 @@ export const _LOGIN_URL = `${_MAIN_URL}auth/login`;
 export const _LOGOUT_URL = `${_MAIN_URL}auth/logout`;
 export const _TOKEN_URL = `${_MAIN_URL}auth/token`;
 export const _USER_URL = `${_MAIN_URL}auth/user`;
+
+export const _ROOT_PATH = "/";
+export const _LOGIN_PATH = "/login";
+export const _REGISTER_PATH = "/register";
+export const _FORGOT_PASSWORD_PATH = "/forgot-password";
+export const _RESET_PASSWORD_PATH = "/reset-password";
+export const _PROFILE_PATH = "/profile";
+export const _ORDERS_PATH = "/profile/orders";
+export const _INGREDIENTS_PATH = "/ingredients/";
+export const _INGREDIENTS_ID_PATH = "/ingredients/:ingredientId";
+
+

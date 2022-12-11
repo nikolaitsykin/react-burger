@@ -3,13 +3,18 @@ import {
   EmailInput,
   PasswordInput,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import React, { useEffect } from "react";
-import classes from "./login.module.css";
-import { Link, Redirect, useHistory, useLocation } from "react-router-dom";
-import { checkUser, login } from "../../services/actions/auth";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link, Redirect, useHistory, useLocation } from "react-router-dom";
+import { useForm } from "../../hooks/useForm";
+import { checkUser, login } from "../../services/actions/auth";
 import { getCookie } from "../../utils/api";
-import { useForm} from "../../hooks/useForm";
+import {
+  _FORGOT_PASSWORD_PATH,
+  _REGISTER_PATH,
+  _ROOT_PATH,
+} from "../../utils/constants";
+import classes from "./login.module.css";
 
 const LoginPage = () => {
   const history = useHistory();
@@ -35,20 +40,17 @@ const LoginPage = () => {
 
   if (!isAuth) {
     return (
-      <form
-        className={classes.login_container}
-        onSubmit={(e) => handleLogin(e)}
-      >
+      <form className={classes.login_container} onSubmit={handleLogin}>
         <p className="text text_type_main-medium mb-6">Log In</p>
         <EmailInput
-          onChange={(e) => handleChange(e)}
+          onChange={handleChange}
           value={values.email || ""}
           name={"email"}
           extraClass="mb-6"
           autoComplete="username"
         />
         <PasswordInput
-          onChange={(e) => handleChange(e)}
+          onChange={handleChange}
           value={values.password || ""}
           placeholder="Password"
           name={"password"}
@@ -59,16 +61,16 @@ const LoginPage = () => {
           Enter
         </Button>
         <p className="text text_type_main-default mb-4">
-          Don't have an account? <Link to="/register">Sign Up</Link>
+          Don't have an account? <Link to={_REGISTER_PATH}>Sign Up</Link>
         </p>
         <p className="text text_type_main-default">
-          Forgot you password?
-          <Link to="/forgot-password">Recover password</Link>
+          Forgot you password?{" "}
+          <Link to={_FORGOT_PASSWORD_PATH}>Recover password</Link>
         </p>
       </form>
     );
   } else {
-    return <Redirect to={location?.state?.from.pathname || "/"} />;
+    return <Redirect to={location?.state?.from.pathname || _ROOT_PATH} />;
   }
 };
 

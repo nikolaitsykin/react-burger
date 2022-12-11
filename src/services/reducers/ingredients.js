@@ -24,7 +24,7 @@ const initialState = {
   main: [],
   isRequested: false,
   isRequestedError: false,
-  isIngredientModalOpened: false,
+  ingredientModalIsOpened: false,
   selectedIngredient: {},
   selectedIngredients: [],
   selectedBun: {},
@@ -115,13 +115,13 @@ export const ingredientItems = (state = initialState, action) => {
     case OPEN_INGREDIENT_ITEMS_MODAL: {
       return {
         ...state,
-        isIngredientModalOpened: true,
+        ingredientModalIsOpened: true,
       };
     }
     case CLOSE_INGREDIENT_ITEMS_MODAL: {
       return {
         ...state,
-        isIngredientModalOpened: false,
+        ingredientModalIsOpened: false,
       };
     }
     case SELECT_INGREDIENT_ITEM: {

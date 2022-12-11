@@ -8,3 +8,8 @@
   width: 640px;
   height: 675px;
 }
+
+.list_item_link {
+  text-decoration: none;
+  color: #fff;
+}

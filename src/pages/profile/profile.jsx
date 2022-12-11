@@ -5,6 +5,9 @@ import ProfileForm from "../../components/ProfileForm/ProfileForm";
 import ProfileSideBar from "../../components/ProfileSideBar/ProfileSideBar";
 import { checkUser } from "../../services/actions/auth";
 import { getCookie } from "../../utils/api";
+import {
+  _LOGIN_PATH
+} from "../../utils/constants";
 import classes from "./profile.module.css";
 
 const ProfilePage = () => {
@@ -28,7 +31,7 @@ const ProfilePage = () => {
       </div>
     );
   } else {
-    return <Redirect to={{ pathname: "/login", state: { from: location } }} />;
+    return <Redirect to={{ pathname: {_LOGIN_PATH}, state: { from: location } }} />;
   }
 };
 

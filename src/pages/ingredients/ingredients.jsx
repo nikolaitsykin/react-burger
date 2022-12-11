@@ -1,35 +1,36 @@
-import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import DetailProperties from "../../components/DetailProperties/DetailProperties";
 import classes from "./ingredients.module.css";
 
-const IngredientsPage = () => {
+const IngredientPage = () => {
   const { items } = useSelector((store) => store.ingredientItems);
   const { ingredientId } = useParams();
   const [item, setItem] = useState({});
+  const location = useLocation();
+  const background = location.state && location.state.background;
 
   useEffect(() => {
-    const neededItem = {
+    const selectedItem = {
       ...items.filter((item) => item._id === ingredientId)[0],
     };
-    setItem(neededItem);
+
+    setItem(selectedItem);
   }, [items, ingredientId]);
 
   return (
     <div className={classes.ingredient_container}>
+      {!background && (
+        <p className="text text_type_main-large mb-8 mt-30">
+          Ingredient details
+        </p>
+      )}
       <img src={item.image_large} alt={item.name} className="mb-4" />
-      <p className="text text_type_main-large mb-8">Ingredient details</p>
       <p className="text text_type_main-medium mb-8">{item.name}</p>
       <DetailProperties ingredient={item} />
-      <Link to="/">
-        <Button type="primary" htmlType="button" extraClass="mb-20 mt-10">
-          Back
-        </Button>
-      </Link>
     </div>
   );
 };
 
-export default IngredientsPage;
+export default IngredientPage;

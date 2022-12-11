@@ -65,15 +65,20 @@ export const registerPost = (url, email, password, userName) => {
   });
 };
 
-export const loginPost = (url, postData) => {
+export const loginPost = (url, values) => {
   return request(url, {
     method: "POST",
+    mode: 'cors',
+    cache: 'no-cache',
+    credentials: 'same-origin',
     headers: {
       "Content-Type": "application/json",
     },
+    redirect: 'follow',
+    referrerPolicy: 'no-referrer',
     body: JSON.stringify({
-      email: postData.email,
-      password: postData.password,
+      email: values.email,
+      password: values.password,
     }),
   });
 };
@@ -100,7 +105,7 @@ export const getUserRequest = (token) => {
   });
 };
 
-export const userDataPatch = (userData, token) => {
+export const userDataPatch = (values, token) => {
   return request(_USER_URL, {
     method: "PATCH",
     headers: {
@@ -108,20 +113,20 @@ export const userDataPatch = (userData, token) => {
       authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({
-      email: userData.email,
-      password: userData.password,
-      name: userData.name,
+      email: values.email,
+      password: values.password,
+      name: values.name,
     }),
   });
 };
 
-export const refreshTokenRequest = (tokenData) => {
+export const refreshTokenRequest = (refreshData) => {
   return request(_TOKEN_URL, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(tokenData),
+    body: JSON.stringify(refreshData),
   });
 };
 

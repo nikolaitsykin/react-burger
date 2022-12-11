@@ -1,7 +1,8 @@
+import { _ROOT_PATH } from "../../utils/constants";
 import { MODAL_CLOSE, MODAL_OPEN } from "../actions/modal";
 
 const initialState = {
-  modalIsOpen: false,
+  modalIsOpened: false,
 };
 
 export const modalReducer = (state = initialState, action) => {
@@ -9,14 +10,14 @@ export const modalReducer = (state = initialState, action) => {
     case MODAL_OPEN: {
       return {
         ...state,
-        modalIsOpen: true,
+        modalIsOpened: true,
       };
     }
     case MODAL_CLOSE: {
-      window.history.replaceState(null, null, "/");
+      window.history.replaceState(null, null, _ROOT_PATH);
       return {
         ...state,
-        modalIsOpen: false,
+        modalIsOpened: false,
       };
     }
     default:

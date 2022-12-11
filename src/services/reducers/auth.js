@@ -41,7 +41,6 @@ export const userData = (state = initialState, action) => {
     case REFRESH_USER: {
       return {
         ...state,
-        token: action.token,
         name: action.user.name,
         email: action.user.email,
       };

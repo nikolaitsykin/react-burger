@@ -6,6 +6,7 @@ import { useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { orderData } from "../../services/actions/constructorActions";
+import { _LOGIN_PATH } from "../../utils/constants";
 import classes from "./Total.module.css";
 
 export const Total = () => {
@@ -33,7 +34,7 @@ export const Total = () => {
         dispatch(orderData(dataIds));
       }
     } else {
-      history.replace("/login");
+      history.replace(_LOGIN_PATH);
     }
   };
 
