@@ -30,6 +30,7 @@ export const userData = (state = initialState, action) => {
       return {
         ...state,
         isAuth: true,
+        token: action.token,
       };
     }
     case SET_TOKEN: {
@@ -43,6 +44,7 @@ export const userData = (state = initialState, action) => {
         ...state,
         name: action.user.name,
         email: action.user.email,
+        token: action.token,
       };
     }
     case RESET_USER: {

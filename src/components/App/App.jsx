@@ -22,6 +22,7 @@ function App() {
     dispatch(getIngredients());
   }, [dispatch]);
 
+
   const history = useHistory();
   const location = useLocation();
 

@@ -1,10 +1,12 @@
 import { _USER_URL, _TOKEN_URL } from "./constants";
 
-function request(url, options) {
-  return fetch(url, options).then((res) => {
-    return res.ok ? res.json() : Promise.reject(`Ошибка ${res.status} ${res}`);
-  });
-}
+export const request = async (url, options) => {
+  const res = await fetch(url, options);
+  if (!res.ok) {
+    const error = await res.json();
+    throw new Error(error.message);
+  } else return res.json();
+};
 
 export const fetchGet = (url) => {
   return request(url, {
@@ -68,14 +70,9 @@ export const registerPost = (url, email, password, userName) => {
 export const loginPost = (url, values) => {
   return request(url, {
     method: "POST",
-    mode: 'cors',
-    cache: 'no-cache',
-    credentials: 'same-origin',
     headers: {
       "Content-Type": "application/json",
     },
-    redirect: 'follow',
-    referrerPolicy: 'no-referrer',
     body: JSON.stringify({
       email: values.email,
       password: values.password,
@@ -116,6 +113,7 @@ export const userDataPatch = (values, token) => {
       email: values.email,
       password: values.password,
       name: values.name,
+
     }),
   });
 };
