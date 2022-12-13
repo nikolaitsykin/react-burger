@@ -1,4 +1,4 @@
-import { _USER_URL, _TOKEN_URL } from "./constants";
+import { _TOKEN_URL, _USER_URL } from "./constants";
 
 export const request = async (url, options) => {
   const res = await fetch(url, options);
@@ -113,6 +113,7 @@ export const userDataPatch = (values, token) => {
       email: values.email,
       password: values.password,
       name: values.name,
+
     }),
   });
 };

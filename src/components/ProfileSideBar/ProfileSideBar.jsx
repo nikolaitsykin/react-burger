@@ -1,25 +1,20 @@
-import React, { useEffect } from "react";
-import { Link, Redirect, useHistory, useLocation } from "react-router-dom";
-import classes from "./ProfileSideBar.module.css";
-import { checkUser, logout } from "../../services/actions/auth";
 import { useDispatch, useSelector } from "react-redux";
+import { Link, Redirect, useHistory, useLocation } from "react-router-dom";
+import { logout } from "../../services/actions/auth";
 import { getCookie } from "../../utils/api";
-import { _PROFILE_PATH, _ROOT_PATH, _ORDERS_PATH } from "../../utils/constants";
+import { _ORDERS_PATH, _PROFILE_PATH, _ROOT_PATH } from "../../utils/constants";
+import classes from "./ProfileSideBar.module.css";
 
 const ProfileSideBar = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const location = useLocation();
-  const token = document.cookie ? getCookie("refreshToken") : "";
+  const refToken = document.cookie ? getCookie("refreshToken") : "";
+
   const { isAuth } = useSelector((state) => state.userData);
 
-  useEffect(() => {
-    dispatch(checkUser(token));
-    console.log(token);
-  }, [dispatch, isAuth, token]);
-
   const handleLogout = () => {
-    dispatch(logout(token, history));
+    dispatch(logout(refToken, history));
   };
 
   if (isAuth) {

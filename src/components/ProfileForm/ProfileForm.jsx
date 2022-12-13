@@ -1,20 +1,19 @@
-import classes from "./ProfileForm.module.css";
-import React, { useEffect, useState } from "react";
 import {
   Button,
-  Input,
+  Input
 } from "@ya.praktikum/react-developer-burger-ui-components";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useAuth } from "../../hooks/useAuth";
-import { patchUserData } from "../../services/actions/auth";
+import { checkUser, patchUserData } from "../../services/actions/auth";
+import { getCookie } from "../../utils/api";
+import classes from "./ProfileForm.module.css";
 
 const ProfileForm = () => {
   const dispatch = useDispatch();
-  const { name, email, password } = useSelector(
-    (state) => state.userData
-  );
-  
-  const token = useSelector((state) => state.userData.token);
+  const { name, email, password } = useSelector((state) => state.userData);
+
+  const token = document.cookie ? getCookie("token") : "";
 
   const [isChanged, setChanged] = useState(false);
 
@@ -36,7 +35,7 @@ const ProfileForm = () => {
 
   const submitForm = (event) => {
     event.preventDefault();
-    // console.log(token);
+    dispatch(checkUser(token));
     dispatch(patchUserData(values, token));
   };
 

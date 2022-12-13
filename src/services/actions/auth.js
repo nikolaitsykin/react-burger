@@ -1,14 +1,16 @@
-import { _LOGIN_URL, _LOGOUT_URL, _LOGIN_PATH } from "../../utils/constants";
 import {
   deleteCookie,
   getCookie,
   getUserRequest,
   loginPost,
   logoutPost,
-  refreshTokenRequest,
-  setCookie,
-  userDataPatch,
+  refreshTokenRequest, setCookie,
+  userDataPatch
 } from "../../utils/api";
+import {
+  _LOGIN_PATH, _LOGIN_URL,
+  _LOGOUT_URL
+} from "../../utils/constants";
 
 export const LOGIN_SUCCESS = "LOGIN";
 export const SET_USER = "SET_USER";
@@ -82,7 +84,7 @@ export const refreshUserData = (token) => {
         user: res.user,
         isAuth: true,
       });
-      setCookie("refreshToken", res.refreshToken);
+      setCookie(localStorage.getItem("refreshToken"), res.refreshToken);
       return accessToken;
     });
   };
@@ -91,10 +93,9 @@ export const refreshUserData = (token) => {
 export const patchUserData = (values, token) => {
   return function (dispatch) {
     return userDataPatch(values, token).then((res) => {
-      setCookie("token", res.accessToken);
       dispatch({
         type: REFRESH_USER,
-        token: res.accessToken,
+        token: token,
         user: res.user,
       });
     });

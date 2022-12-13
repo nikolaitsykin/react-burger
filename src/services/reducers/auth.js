@@ -4,7 +4,7 @@ import {
   REFRESH_USER,
   RESET_USER,
   SET_TOKEN,
-  SET_USER,
+  SET_USER
 } from "../actions/auth";
 
 const initialState = {
@@ -30,6 +30,7 @@ export const userData = (state = initialState, action) => {
       return {
         ...state,
         isAuth: true,
+        token: action.token,
       };
     }
     case SET_TOKEN: {

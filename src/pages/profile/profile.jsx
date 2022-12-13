@@ -23,6 +23,8 @@ const ProfilePage = () => {
   }, [dispatch, isAuth, token]);
 
 
+
+
   if (isAuth) {
     return (
       <div className={classes.profile_container}>
