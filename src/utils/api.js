@@ -113,7 +113,6 @@ export const userDataPatch = (values, token) => {
       email: values.email,
       password: values.password,
       name: values.name,
-
     }),
   });
 };

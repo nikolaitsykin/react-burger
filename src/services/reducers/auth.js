@@ -30,7 +30,6 @@ export const userData = (state = initialState, action) => {
       return {
         ...state,
         isAuth: true,
-        token: action.token,
       };
     }
     case SET_TOKEN: {

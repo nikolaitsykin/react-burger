@@ -51,7 +51,7 @@ const RegisterPage = () => {
   if (!isAuth) {
     return (
       <form className={classes.register_container} onSubmit={(e) => register(e)}>
-        <p className="text text_type_main-medium mb-6">Register</p>
+        <p className="text text_type_main-medium mb-6">Регистрация</p>
         <Input
           type={"text"}
           placeholder={"Name"}
@@ -73,7 +73,6 @@ const RegisterPage = () => {
         <PasswordInput
           onChange={(e) => onChange(e)}
           value={state.password}
-          placeholder={"Password"}
           name={"password"}
           extraClass="mb-6"
         />
