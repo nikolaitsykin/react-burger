@@ -4,7 +4,8 @@ import {
   REFRESH_USER,
   RESET_USER,
   SET_TOKEN,
-  SET_USER
+  SET_USER,
+  REFRESH_TOKEN
 } from "../actions/auth";
 
 const initialState = {
@@ -57,6 +58,12 @@ export const userData = (state = initialState, action) => {
         ...state,
         isAuth: false,
       };
+    }
+    case REFRESH_TOKEN: {
+      return {
+        ...state,
+        token: action.token,
+      }
     }
     default:
       return state;

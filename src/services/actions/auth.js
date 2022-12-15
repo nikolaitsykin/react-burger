@@ -4,18 +4,17 @@ import {
   getUserRequest,
   loginPost,
   logoutPost,
-  refreshTokenRequest, setCookie,
-  userDataPatch
+  refreshTokenRequest,
+  setCookie,
+  userDataPatch,
 } from "../../utils/api";
-import {
-  _LOGIN_PATH, _LOGIN_URL,
-  _LOGOUT_URL
-} from "../../utils/constants";
+import { _LOGIN_PATH, _LOGIN_URL, _LOGOUT_URL } from "../../utils/constants";
 
 export const LOGIN_SUCCESS = "LOGIN";
 export const SET_USER = "SET_USER";
 export const SET_TOKEN = "SET_TOKEN";
 export const REFRESH_USER = "REFRESH_USER";
+export const REFRESH_TOKEN = "REFRESH_TOKEN";
 export const RESET_USER = "RESET_USER";
 export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
 
@@ -27,13 +26,13 @@ export const login = (values, history) => {
         if (res.accessToken.indexOf("Bearer") === 0)
           accessToken = res.accessToken.split("Bearer ")[1];
         else accessToken = res.accessToken;
+        sessionStorage.setItem("token", res.refreshToken);
         dispatch({
           type: SET_USER,
           user: { ...res.user, password: values.password },
           isAuth: true,
           token: accessToken,
         });
-        setCookie("refreshToken", res.refreshToken);
         setCookie("token", accessToken);
       })
       .then(() => history.replace({ pathname: _LOGIN_PATH }))
@@ -65,14 +64,15 @@ export const logout = (token, history) => {
   };
 };
 
-export const refreshUserData = (token) => {
+export const refreshUserData = (refToken) => {
   const refreshData = {
-    token: token,
+    token: refToken,
   };
   return function (dispatch) {
     return refreshTokenRequest(refreshData).then((res) => {
       let accessToken = null;
-      deleteCookie("refreshToken", token);
+      sessionStorage.removeItem("token");
+
       if (res.accessToken.indexOf("Bearer") === 0) {
         accessToken = res.accessToken.split("Bearer ")[1];
       } else {
@@ -110,8 +110,34 @@ export const checkUser = (token) => {
           type: LOGIN_SUCCESS,
         });
       })
-      .catch(() => {
-        refreshUserData(token);
+      .catch((err) => {
+        if (err.message === "jwt expired") {
+          const refData = { token: sessionStorage.getItem("token") };
+          return refreshTokenRequest(refData).then((res) => {
+            let accessToken;
+            if (res.accessToken.indexOf("Bearer") === 0) {
+              accessToken = res.accessToken.split("Bearer ")[1];
+            } else {
+              accessToken = res.accessToken;
+            }
+            console.log(res);
+            console.log(accessToken);
+            dispatch({
+              type: REFRESH_TOKEN,
+              token: accessToken,
+            });
+            setCookie("token", accessToken);
+            setCookie(localStorage.getItem("refreshToken"), res.refreshToken);
+            getUserRequest(accessToken).then((res) => {
+              dispatch({
+                type: REFRESH_USER,
+                token: accessToken,
+                user: res.user,
+              });
+            });
+            return "Token has beed updated";
+          });
+        }
       });
   };
 };
