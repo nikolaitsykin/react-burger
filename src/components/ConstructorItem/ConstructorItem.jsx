@@ -1,17 +1,17 @@
-import React, { useRef } from "react";
-import classes from "./ConstructorItem.module.css";
+import React from "react";
 import {
   ConstructorElement,
-  DragIcon,
+  DragIcon
 } from "@ya.praktikum/react-developer-burger-ui-components";
+import PropTypes from "prop-types";
+import { useRef } from "react";
 import { useDrag, useDrop } from "react-dnd";
 import { useDispatch } from "react-redux";
-import PropTypes from "prop-types";
-import { ingredientsPropTypes } from "../../utils/constants";
 import {
-  GET_TOTAL_PRICE,
-  DECREASE_INGREDIENT_ITEM,
+  DECREASE_INGREDIENT_ITEM, GET_TOTAL_PRICE
 } from "../../services/actions/ingredientsActions";
+import { ingredientsPropTypes } from "../../utils/constants";
+import classes from "./ConstructorItem.module.css";
 
 function ConstructorItem({ item, index, onMove }) {
   const dispatch = useDispatch();

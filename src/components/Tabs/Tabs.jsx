@@ -1,9 +1,9 @@
 import React from "react";
-import classes from "./Tabs.module.css";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
-import { _BUN, _SAUCE, _MAIN } from "../../utils/constants";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { CHOOSE_TAB } from "../../services/actions/ingredientsActions";
+import { _BUN, _MAIN, _SAUCE } from "../../utils/constants";
+import classes from "./Tabs.module.css";
 
 export const Tabs = () => {
   const { currentTab } = useSelector((state) => state.ingredientItems);

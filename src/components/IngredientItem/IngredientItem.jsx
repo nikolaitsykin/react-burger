@@ -1,43 +1,36 @@
-import React from "react";
-import { useDrag } from "react-dnd";
-import classes from "./IngredientItem.module.css";
 import {
   Counter,
   CurrencyIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from "prop-types";
+import { useDrag } from "react-dnd";
+import { Link, useLocation } from "react-router-dom";
 import { ingredientsPropTypes } from "../../utils/constants";
-import { useDispatch } from "react-redux";
-import {
-  OPEN_INGREDIENT_ITEMS_MODAL,
-  SELECT_INGREDIENT_ITEM,
-} from "../../services/actions/ingredientsActions";
+import classes from "./IngredientItem.module.css";
 
 const IngredientItem = ({ item }) => {
-  const dispatch = useDispatch();
+  const location = useLocation();
 
-  const openModal = () => {
-    dispatch({ type: SELECT_INGREDIENT_ITEM, item: item });
-    dispatch({ type: OPEN_INGREDIENT_ITEMS_MODAL });
-  };
+  const ingredientId = item["_id"];
 
   const [{ isDrag }, dragRef] = useDrag({
     type: "ingredient",
     item: item,
   });
 
-  const onDrop = (e) => {
-    e.preventDefault();
-  };
-
   return (
     !isDrag && (
-      <>
+      <Link
+        className={classes.ingredient_link}
+        to={{
+          pathname: `/ingredients/${ingredientId}`,
+          state: { background: location },
+        }}
+        key={ingredientId}
+      >
         <div
           className={classes.container}
-          onClick={openModal}
           ref={dragRef}
-          onDrop={onDrop}
         >
           <div className={classes.top}>
             {item.count > 0 && (
@@ -59,7 +52,7 @@ const IngredientItem = ({ item }) => {
             </div>
           </div>
         </div>
-      </>
+      </Link>
     )
   );
 };

@@ -1,6 +1,6 @@
-import PortalReactDOM from "react-dom";
-import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
+import { useEffect, useState } from "react";
+import PortalReactDOM from "react-dom";
 
 const Portal = ({ children }) => {
   const [modalContainer] = useState(() => document.createElement("div"));

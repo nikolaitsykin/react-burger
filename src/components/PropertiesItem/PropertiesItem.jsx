@@ -1,6 +1,6 @@
 import React from "react";
-import classes from "./PropertiesItem.module.css";
 import PropTypes from "prop-types";
+import classes from "./PropertiesItem.module.css";
 
 const PropertiesItem = ({ title, value }) => {
   return (

@@ -1,10 +1,12 @@
 import React from "react";
-import classes from "./ModalOverlay.module.css";
 import PropTypes from "prop-types";
 import Portal from "../Portal/Portal";
+import classes from "./ModalOverlay.module.css";
+import { useSelector } from "react-redux";
 
-const ModalOverlay = ({ children, isOpened, onClose }) => {
-  if (!isOpened) {
+const ModalOverlay = ({ children, onClose }) => {
+  const modalIsOpen = useSelector((store) => store.modalReducer);
+  if (!modalIsOpen) {
     return null;
   }
 
@@ -20,7 +22,6 @@ const ModalOverlay = ({ children, isOpened, onClose }) => {
 };
 
 ModalOverlay.propTypes = {
-  isOpened: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   children: PropTypes.element.isRequired,
 };

@@ -1,34 +1,35 @@
+import { nanoid } from "nanoid";
+import { _BUN, _ITEMS_URL, _MAIN, _SAUCE } from "../../utils/constants";
+import { fetchGet } from "../../utils/api";
 import {
+  ADD_BUN_ITEM,
+  ADD_INGREDIENT_ITEM,
+  CHOOSE_TAB,
+  CLOSE_INGREDIENT_ITEMS_MODAL,
+  DECREASE_INGREDIENT_ITEM,
   GET_INGREDIENT_ITEMS,
-  GET_INGREDIENT_ITEMS_SUCCESS,
   GET_INGREDIENT_ITEMS_FAILED,
+  GET_INGREDIENT_ITEMS_SUCCESS,
   GET_TOTAL_PRICE,
   OPEN_INGREDIENT_ITEMS_MODAL,
-  CLOSE_INGREDIENT_ITEMS_MODAL,
-  SELECT_INGREDIENT_ITEM,
-  CHOOSE_TAB,
-  ADD_INGREDIENT_ITEM,
-  ADD_BUN_ITEM,
-  DECREASE_INGREDIENT_ITEM,
-  UPDATE_SELECTED_INGREDIENT_ITEMS,
   RESET_CONSTRUCTOR,
+  SELECT_INGREDIENT_ITEM,
+  UPDATE_SELECTED_INGREDIENT_ITEMS,
 } from "../actions/ingredientsActions";
-import { fetchGet } from "../../utils/fetchRequests";
-import { _BUN, _MAIN, _SAUCE, _ITEMS_URL } from "../../utils/constants";
-import { nanoid } from "nanoid";
 
 const initialState = {
+  items: [],
   bun: [],
   sauce: [],
   main: [],
   isRequested: false,
   isRequestedError: false,
-  isIngredientModalOpened: false,
+  ingredientModalIsOpened: false,
   selectedIngredient: {},
   selectedIngredients: [],
   selectedBun: {},
   currentTab: _BUN,
-  total: null,
+  total: "0",
 };
 
 export const addIngredient = (dispatch, item) => {
@@ -75,6 +76,7 @@ export const ingredientItems = (state = initialState, action) => {
     case GET_INGREDIENT_ITEMS_SUCCESS: {
       return {
         ...state,
+        items: [...action.payload],
         bun: [
           ...action.payload
             .filter((item) => item.type === _BUN)
@@ -96,7 +98,7 @@ export const ingredientItems = (state = initialState, action) => {
               return { ...item, count: null };
             }),
         ],
-        isRequest: false,
+        isRequested: false,
       };
     }
     case GET_TOTAL_PRICE: {
@@ -113,13 +115,13 @@ export const ingredientItems = (state = initialState, action) => {
     case OPEN_INGREDIENT_ITEMS_MODAL: {
       return {
         ...state,
-        isIngredientModalOpened: true,
+        ingredientModalIsOpened: true,
       };
     }
     case CLOSE_INGREDIENT_ITEMS_MODAL: {
       return {
         ...state,
-        isIngredientModalOpened: false,
+        ingredientModalIsOpened: false,
       };
     }
     case SELECT_INGREDIENT_ITEM: {
@@ -181,9 +183,6 @@ export const ingredientItems = (state = initialState, action) => {
         ],
       };
     }
-    default: {
-      return state;
-    }
     case UPDATE_SELECTED_INGREDIENT_ITEMS: {
       return {
         ...state,
@@ -193,6 +192,7 @@ export const ingredientItems = (state = initialState, action) => {
     case RESET_CONSTRUCTOR: {
       return {
         ...state,
+        total: "0",
         selectedIngredients: [],
         selectedBun: {},
         bun: [
@@ -211,6 +211,9 @@ export const ingredientItems = (state = initialState, action) => {
           }),
         ],
       };
+    }
+    default: {
+      return state;
     }
   }
 };

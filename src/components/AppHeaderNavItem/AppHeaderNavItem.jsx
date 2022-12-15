@@ -1,20 +1,27 @@
-import React from "react";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import classes from "./AppHeaderNavItem.module.css";
 
-const AppHeaderNavItem = (props) => {
+const AppHeaderNavItem = ({ children, isActive, value }) => {
   return (
     <div>
-      <a href="/" className={`${classes.navItem} pr-5 pl-5`}>
-        {props.children}
+      <Link to="/" className={`${classes.navItem} pr-5 pl-5`}>
+        {children}
         <p
           className={`text text_type_main-default ml-2 
-                ${props.isActive ? null : "text_color_inactive"}`}
+                ${isActive ? null : "text_color_inactive"}`}
         >
-          {props.value}
+          {value}
         </p>
-      </a>
+      </Link>
     </div>
   );
+};
+
+AppHeaderNavItem.propTypes = {
+  isActive: PropTypes.bool,
+  value: PropTypes.string.isRequired,
+  children: PropTypes.element.isRequired,
 };
 
 export default AppHeaderNavItem;

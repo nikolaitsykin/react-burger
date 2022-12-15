@@ -1,16 +1,21 @@
-import React from "react";
-import classes from "./AppHeaderLogin.module.css";
 import { ProfileIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+import { Link, useLocation } from "react-router-dom";
+import classes from "./AppHeaderLogin.module.css";
 
 const AppHeaderLogin = () => {
+  const location = useLocation();
+  const isActive = location.pathname.includes("profile");
+
   return (
-    <div className={classes.container}>
-      <a href="/" className={classes.navItem}>
-        <ProfileIcon type="secondary" />
-        <p className="text text_type_main-default text_color_inactive ml-2">
+    <div className={classes.nav_container}>
+      <Link to="/profile" className={classes.nav_item}>
+        <ProfileIcon type={isActive ? "primary" : "secondary"} />
+        <p className={`text text_type_main-default ml-2 text_color_inactive ${
+          isActive ? "" : "text_color_inactive"
+        }`}>
           Account
         </p>
-      </a>
+      </Link>
     </div>
   );
 };

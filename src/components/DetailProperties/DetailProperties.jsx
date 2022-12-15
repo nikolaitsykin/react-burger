@@ -1,7 +1,6 @@
-import React from "react";
-import classes from "./DetailProperties.module.css";
-import PropertiesItem from "../PropertiesItem/PropertiesItem";
 import { ingredientsPropTypes } from "../../utils/constants";
+import PropertiesItem from "../PropertiesItem/PropertiesItem";
+import classes from "./DetailProperties.module.css";
 
 const DetailProperties = ({ ingredient }) => {
   const { calories, proteins, fat, carbohydrates } = ingredient;
