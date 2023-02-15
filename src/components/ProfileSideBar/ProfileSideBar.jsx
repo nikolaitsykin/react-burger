@@ -1,20 +1,42 @@
-import { useDispatch, useSelector } from "react-redux";
 import { Link, Redirect, useHistory, useLocation } from "react-router-dom";
-import { logout } from "../../services/actions/auth";
-import { getCookie } from "../../utils/api";
-import { _ORDERS_PATH, _PROFILE_PATH, _ROOT_PATH } from "../../utils/constants";
+import { useActions } from "../../hooks/actions";
+import { useAppSelector } from "../../hooks/redux";
+import { useLogoutMutation } from "../../store/api";
+import { deleteCookie, getCookie } from "../../utils/cookie";
+import {
+  _LOGIN_PATH,
+  _ORDERS_PATH,
+  _PROFILE_PATH,
+  _ROOT_PATH
+} from "../../utils/constants";
 import classes from "./ProfileSideBar.module.css";
 
 const ProfileSideBar = () => {
-  const dispatch = useDispatch();
   const history = useHistory();
   const location = useLocation();
-  const refToken = document.cookie ? getCookie("refreshToken") : "";
+  const token = document.cookie ? getCookie("refreshToken") : "";
+  const { isAuth } = useAppSelector((state) => state.auth);
 
-  const { isAuth } = useSelector((state) => state.userData);
+  const [logoutRequest] = useLogoutMutation();
+  const { logout } = useActions();
 
   const handleLogout = () => {
-    dispatch(logout(refToken, history));
+    logoutRequest(token)
+      .then(() => {
+        const oldTokenCookie = getCookie("refreshToken");
+        const oldAccessTokenCookie = getCookie("token");
+        deleteCookie("refreshToken", oldTokenCookie);
+        deleteCookie("token", oldAccessTokenCookie);
+      })
+      .then(() => {
+        history.replace(_LOGIN_PATH);
+      })
+      .then(() => {
+        logout();
+      })
+      .catch((res) => {
+        console.log(res);
+      });
   };
 
   if (isAuth) {

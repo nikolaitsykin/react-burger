@@ -1,12 +1,7 @@
-import {
-  Button
-} from "@ya.praktikum/react-developer-burger-ui-components";
+import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import { Link } from "react-router-dom";
-import {
-  _ROOT_PATH
-} from "../../utils/constants";
+import { _ROOT_PATH } from "../../utils/constants";
 import classes from "./page-not-found-404.module.css";
-
 
 const PageNotFound404 = () => {
   return (
@@ -16,9 +11,14 @@ const PageNotFound404 = () => {
       </p>
       <p className={` ${classes.content} text text_type_digits-large`}>404</p>
       <Link to={_ROOT_PATH}>
-      <Button type="primary" size="medium" htmlType="submit" extraClass="mb-20">
-        Back 
-      </Button>
+        <Button
+          type="primary"
+          size="medium"
+          htmlType="submit"
+          extraClass="mb-20"
+        >
+          Back
+        </Button>
       </Link>
     </div>
   );

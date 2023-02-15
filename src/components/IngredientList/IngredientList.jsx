@@ -1,52 +1,50 @@
 import { useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { CHOOSE_TAB } from "../../services/actions/ingredientsActions";
+import { useActions } from "../../hooks/actions";
+import { useAppSelector } from "../../hooks/redux";
 import { _BUN, _MAIN, _SAUCE } from "../../utils/constants";
 import IngredientItem from "../IngredientItem/IngredientItem";
 import Loader from "../Loader/Loader";
 import classes from "./IngredientList.module.css";
 
 const IngredientList = () => {
-  const { isRequested, isRequestedError, bun, sauce, main } = useSelector(
-    (state) => state.ingredientItems
+  const { bun, sauce, main, isRequested, isRequestedError } = useAppSelector(
+    (state) => state.ingredients
   );
+  const { chooseTab } = useActions();
 
-  const dispatch = useDispatch();
   const itemsRef = useRef();
   const bunRef = useRef();
   const sauceRef = useRef();
   const mainRef = useRef();
 
-  const selectTab = () => {
+  function selectTab(itemsRef, bunRef, sauceRef, mainRef) {
     const buns = Math.abs(
-      bunRef.current.getBoundingClientRect().top -
-        itemsRef.current.getBoundingClientRect().top
+      bunRef?.current.getBoundingClientRect().top -
+        itemsRef?.current.getBoundingClientRect().top
     );
     const sauces = Math.abs(
-      sauceRef.current.getBoundingClientRect().top -
-        itemsRef.current.getBoundingClientRect().top
+      sauceRef?.current.getBoundingClientRect().top -
+        itemsRef?.current.getBoundingClientRect().top
     );
     const toppings = Math.abs(
-      mainRef.current.getBoundingClientRect().top -
-        itemsRef.current.getBoundingClientRect().top
+      mainRef?.current.getBoundingClientRect().top -
+        itemsRef?.current.getBoundingClientRect().top
     );
 
     if (buns < sauces && buns < toppings) {
-      dispatch({ type: CHOOSE_TAB, value: _BUN });
+      chooseTab(_BUN);
     } else if (sauces < buns && sauces < toppings) {
-      dispatch({ type: CHOOSE_TAB, value: _SAUCE });
+      chooseTab(_SAUCE);
     } else if (toppings < buns && toppings < sauces) {
-      dispatch({ type: CHOOSE_TAB, value: _MAIN });
+      chooseTab(_MAIN);
     }
-  };
+  }
 
   if (isRequestedError) {
     return "Error";
   } else if (isRequested) {
     return (
-      <div
-        style={{ display: "flex", justifyContent: "center", marginTop: 100 }}
-      >
+      <div className={classes.loader}>
         <Loader />
       </div>
     );
@@ -55,7 +53,7 @@ const IngredientList = () => {
       <div
         className={classes.ingredientList}
         ref={itemsRef}
-        onScroll={(e) => selectTab()}
+        onScroll={(e) => selectTab(itemsRef, bunRef, sauceRef, mainRef)}
         data-list
       >
         <p

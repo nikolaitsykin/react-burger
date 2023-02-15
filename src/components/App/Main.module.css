@@ -7,13 +7,3 @@ html {
 * {
   box-sizing: border-box;
 }
-
-/* .main {
-  max-width: 1240px;
-  overflow: hidden;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(2, 50%);
-  max-width: 1240px;
-  column-gap: 30px;
-} */

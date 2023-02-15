@@ -3,19 +3,22 @@ import {
   Input
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useActions } from "../../hooks/actions";
+import { useAppSelector } from "../../hooks/redux";
 import { useAuth } from "../../hooks/useAuth";
-import { checkUser, patchUserData } from "../../services/actions/auth";
-import { getCookie } from "../../utils/api";
+import { usePatchUserDataMutation } from "../../store/api";
+import { getCookie } from "../../utils/cookie";
 import classes from "./ProfileForm.module.css";
 
 const ProfileForm = () => {
-  const dispatch = useDispatch();
-  const { name, email, password } = useSelector((state) => state.userData);
+  const { name, email, password } = useAppSelector((store) => store.auth);
 
   const token = document.cookie ? getCookie("token") : "";
 
   const [isChanged, setChanged] = useState(false);
+
+  const [patchUserData] = usePatchUserDataMutation();
+  const { refreshUser } = useActions();
 
   const { values, handleChange, errors, isValid, resetForm } = useAuth({
     email: email,
@@ -35,8 +38,15 @@ const ProfileForm = () => {
 
   const submitForm = (event) => {
     event.preventDefault();
-    dispatch(checkUser(token));
-    dispatch(patchUserData(values, token));
+    const userData = {
+      token,
+      ...values,
+    };
+    patchUserData(userData)
+      .then(() => {
+        refreshUser(values);
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -87,10 +97,10 @@ const ProfileForm = () => {
           htmlType="button"
           onClick={() => resetForm({ name, email, password })}
         >
-          Отменить
+          Cancel
         </Button>
         <Button type="primary" htmlType="submit">
-          Сохранить
+          Save
         </Button>
       </div>
     </form>

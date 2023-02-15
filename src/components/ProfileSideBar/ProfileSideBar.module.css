@@ -3,7 +3,6 @@
   flex-direction: column;
   width: 320px;
   margin-right: 60px;
-  
 }
 
 .nav_item {
@@ -15,16 +14,16 @@
 
 .nav_description {
   margin-top: 60px;
-  color: #8585AD;
+  color: #8585ad;
   opacity: 0.4;
 }
 
 .nav_item:hover p {
   color: #ffffff;
-  transition: all .2s linear;
+  transition: all 0.2s linear;
 }
 .nav_item:hover svg {
-  transition: all .2s linear;
+  transition: all 0.2s linear;
   fill: #fff;
 }
 
@@ -38,5 +37,5 @@
 
 .logout_button:hover p {
   color: #ffffff;
-  transition: all .2s linear;
+  transition: all 0.2s linear;
 }

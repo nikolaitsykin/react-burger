@@ -1,15 +1,15 @@
-import React from "react";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useDispatch, useSelector } from "react-redux";
-import { CHOOSE_TAB } from "../../services/actions/ingredientsActions";
+import { useActions } from "../../hooks/actions";
+import { useAppSelector } from "../../hooks/redux";
 import { _BUN, _MAIN, _SAUCE } from "../../utils/constants";
 import classes from "./Tabs.module.css";
 
 export const Tabs = () => {
-  const { currentTab } = useSelector((state) => state.ingredientItems);
-  const dispatch = useDispatch();
+  const { currentTab } = useAppSelector((state) => state.ingredients);
+  const { chooseTab } = useActions();
+
   const tabsToggle = (e) => {
-    dispatch({ type: CHOOSE_TAB, value: e });
+    chooseTab(e);
     const tabTarget = document.querySelector(`[data-tab-target="${e}"]`);
     const ingredientList = document.querySelector(`[data-list]`);
     ingredientList.scrollTo({

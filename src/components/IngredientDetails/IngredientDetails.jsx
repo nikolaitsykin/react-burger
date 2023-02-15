@@ -1,6 +1,5 @@
-import React from "react";
 import { ingredientsPropTypes } from "../../utils/constants";
-import DetailsProperties from "../DetailProperties/DetailProperties";
+import DetailsProperties from "../BurgerIngredients/DetailProperties/DetailProperties";
 import classes from "./IngredientDetails.module.css";
 
 const IngredientDetails = ({ item }) => {

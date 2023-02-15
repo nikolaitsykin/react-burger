@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import { useLocation, useParams } from "react-router-dom";
-import DetailProperties from "../../components/DetailProperties/DetailProperties";
+import DetailProperties from "../../components/BurgerIngredients/DetailProperties/DetailProperties";
+import { useAppSelector } from "../../hooks/redux";
 import classes from "./ingredients.module.css";
 
 const IngredientPage = () => {
-  const { items } = useSelector((store) => store.ingredientItems);
+  const { items } = useAppSelector((store) => store.ingredients);
+
   const { ingredientId } = useParams();
   const [item, setItem] = useState({});
   const location = useLocation();

@@ -1,12 +1,13 @@
 import {
   Counter,
-  CurrencyIcon,
+  CurrencyIcon
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from "prop-types";
 import { useDrag } from "react-dnd";
 import { Link, useLocation } from "react-router-dom";
 import { ingredientsPropTypes } from "../../utils/constants";
 import classes from "./IngredientItem.module.css";
+import { _INGREDIENTS_PATH } from "../../utils/constants";
 
 const IngredientItem = ({ item }) => {
   const location = useLocation();
@@ -23,15 +24,12 @@ const IngredientItem = ({ item }) => {
       <Link
         className={classes.ingredient_link}
         to={{
-          pathname: `/ingredients/${ingredientId}`,
+          pathname: `${_INGREDIENTS_PATH}${ingredientId}`,
           state: { background: location },
         }}
         key={ingredientId}
       >
-        <div
-          className={classes.container}
-          ref={dragRef}
-        >
+        <div className={classes.container} ref={dragRef}>
           <div className={classes.top}>
             {item.count > 0 && (
               <Counter

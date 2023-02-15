@@ -1,12 +1,12 @@
 import PropTypes from "prop-types";
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import ModalHeader from "../ModalHeader/ModalHeader";
-import ModalOverlay from "../ModalOverlay/ModalOverlay";
+import { useAppSelector } from "../../hooks/redux";
+import ModalHeader from "./ModalHeader/ModalHeader";
+import ModalOverlay from "./ModalOverlay/ModalOverlay";
 import classes from "./Modal.module.css";
 
 const Modal = ({ header, onClose, children }) => {
-  const modalIsOpened = useSelector((store) => store.modalReducer);
+  const modalIsOpened = useAppSelector((state) => state.modal);
 
   useEffect(() => {
     if (!modalIsOpened) return;
@@ -37,7 +37,6 @@ const Modal = ({ header, onClose, children }) => {
 Modal.propTypes = {
   header: PropTypes.string,
   onClose: PropTypes.func.isRequired,
-  children: PropTypes.element.isRequired,
 };
 
 export default Modal;
