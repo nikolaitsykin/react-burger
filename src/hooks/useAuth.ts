@@ -1,10 +1,14 @@
 import React, { useCallback, useState } from "react";
 import { IFormUser } from "../models/models";
 
+interface IFormState {
+  [key: string]: string;
+}
+
 export function useAuth(props: IFormUser) {
-  const [values, setValues] = useState({ ...props });
-  const [errors, setErrors] = useState({});
-  const [isValid, setIsValid] = useState(true);
+  const [values, setValues] = useState<IFormState>({ ...props });
+  const [errors, setErrors] = useState<IFormState>({});
+  const [isValid, setIsValid] = useState<boolean>(true);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;

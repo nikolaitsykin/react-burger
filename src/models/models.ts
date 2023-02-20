@@ -1,6 +1,5 @@
 export interface IIngredient {
   _id: string;
-  uid?: string;
   name: string;
   type: string;
   proteins: number;
@@ -13,6 +12,7 @@ export interface IIngredient {
   image_large: string;
   __v: number;
   count: number;
+  uid?: string;
   index: number;
 }
 
@@ -34,8 +34,9 @@ export interface IUserResponse {
   success: boolean;
   message?: string;
   user?: IUser;
-  accessToken?: string;
+  accessToken: string;
   refreshToken?: string;
+  data: IUserResponse;
 }
 
 export interface IServerResponse {

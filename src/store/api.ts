@@ -38,7 +38,7 @@ export const api = createApi({
         body: JSON.stringify({ ingredients: dataIds }),
       }),
     }),
-    forgotPassword: build.mutation<{ success: boolean; message: string }, string>({
+    forgotPassword: build.mutation<{ success: boolean; message: string }, string | undefined>({
       query: (email: string) => ({
         url: _EMAIL_RESET_URL,
         method: `POST`,
@@ -78,7 +78,7 @@ export const api = createApi({
         body: JSON.stringify(userData),
       }),
     }),
-    logout: build.mutation<{ success: boolean; message: string }, string>({
+    logout: build.mutation<{ success: boolean; message: string }, string | undefined>({
       query: (token: string) => ({
         url: _LOGOUT_URL,
         method: "POST",
@@ -88,7 +88,7 @@ export const api = createApi({
         body: JSON.stringify({ token: token }),
       }),
     }),
-    getUser: build.query<IUserResponse, string>({
+    getUser: build.query<IUserResponse, string | undefined>({
       query: (token: string) => ({
         url: _USER_URL,
         method: "GET",
@@ -113,6 +113,7 @@ export const api = createApi({
         body: JSON.stringify({
           token: token,
         }),
+        transformResponse: (response: IServerResponse) => response.data,
       }),
     }),
     patchUserData: build.mutation<IUserResponse, IUser>({

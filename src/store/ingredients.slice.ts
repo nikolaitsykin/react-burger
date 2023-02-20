@@ -2,32 +2,48 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IIngredient } from "../models/models";
 import { _BUN, _MAIN, _SAUCE } from "../utils/constants";
 
+export const emptyIngredient: IIngredient = {
+  _id: "",
+  name: "",
+  type: "",
+  proteins: 0,
+  fat: 0,
+  carbohydrates: 0,
+  calories: 0,
+  price: 0,
+  image: "",
+  image_mobile: "",
+  image_large: "",
+  __v: 0,
+  count: 0,
+  uid: "",
+  index: 0,
+};
+
 interface IngredientsState {
-  items: object[];
-  item: object[];
-  bun: object[];
-  sauce: object[];
-  main: object[];
+  items: IIngredient[];
+  bun: IIngredient[];
+  sauce: IIngredient[];
+  main: IIngredient[];
   isRequested: boolean;
   isRequestedError: boolean;
-  selectedIngredient: object;
+  selectedIngredient: IIngredient;
   selectedIngredients: IIngredient[];
-  selectedBun: object;
+  selectedBun: IIngredient;
   currentTab: string;
   total: number;
 }
 
 const initialState: IngredientsState = {
   items: [],
-  item: [],
   bun: [],
   sauce: [],
   main: [],
   isRequested: true,
   isRequestedError: false,
-  selectedIngredient: {},
+  selectedIngredient: emptyIngredient,
   selectedIngredients: [],
-  selectedBun: {},
+  selectedBun: emptyIngredient,
   currentTab: _BUN,
   total: 0,
 };
@@ -38,6 +54,7 @@ export const ingredientsSlice = createSlice({
   reducers: {
     getIngredients(state, action: PayloadAction<IIngredient[]>) {
       state.items = action.payload;
+      // @ts-ignore
       state.bun = action.payload
         .filter((item) => {
           const type = item.type;
@@ -46,6 +63,7 @@ export const ingredientsSlice = createSlice({
         .map((item: object) => {
           return { ...item, count: 0, uid: "" };
         });
+      // @ts-ignore
       state.sauce = action.payload
         .filter((item) => {
           const type = item.type;
@@ -54,6 +72,7 @@ export const ingredientsSlice = createSlice({
         .map((item: object) => {
           return { ...item, count: 0, uid: "" };
         });
+      // @ts-ignore
       state.main = action.payload
         .filter((item) => {
           const type = item.type;
@@ -127,7 +146,6 @@ export const ingredientsSlice = createSlice({
         state.selectedIngredients &&
         state.selectedIngredients.reduce(
           (a, b) => a + b.price,
-          // @ts-ignore
           state.selectedBun.price * 2 || 0
         );
     },
@@ -136,7 +154,7 @@ export const ingredientsSlice = createSlice({
     },
     resetConstructor(state) {
       state.selectedIngredients = [];
-      state.selectedBun = {};
+      state.selectedBun = emptyIngredient;
       state.total = 0;
       state.bun = state.bun.map((item) => ({ ...item, count: 0 }));
       state.sauce = state.sauce.map((item) => ({ ...item, count: 0 }));
