@@ -1,15 +1,15 @@
 import {
   Button,
-  Input,
+  Input
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import React, { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { useActions } from "../../hooks/actions";
 import { useAppSelector } from "../../hooks/redux";
 import { useAuth } from "../../hooks/useAuth";
+import { RootState } from "../../store";
 import { usePatchUserDataMutation } from "../../store/api";
 import { getCookie } from "../../utils/cookie";
 import classes from "./ProfileForm.module.css";
-import { RootState } from "../../store";
 
 const ProfileForm = () => {
   const { name, email, password } = useAppSelector(
@@ -23,7 +23,7 @@ const ProfileForm = () => {
   const [patchUserData] = usePatchUserDataMutation();
   const { refreshUser } = useActions();
 
-  const { values, handleChange, errors, isValid, resetForm } = useAuth({
+  const { values, handleChange, isValid, errors, resetForm } = useAuth({
     email: email,
     password: password,
     name: name,
@@ -51,7 +51,7 @@ const ProfileForm = () => {
       })
       .catch((err) => console.log(err));
   };
-
+  console.log(errors)
   return (
     <form
       className={classes.form_container}
@@ -64,7 +64,7 @@ const ProfileForm = () => {
         value={values.name || ""}
         name={"name"}
         error={!isValid}
-        errorText={errors.name || ""}
+        errorText={errors!.name || ""}
         extraClass="mb-6"
         autoComplete="username"
       />
@@ -75,7 +75,7 @@ const ProfileForm = () => {
         value={values.email || ""}
         name={"email"}
         error={!isValid}
-        errorText={errors.email || ""}
+        errorText={errors!.email || ""}
         extraClass="mb-6"
         autoComplete="email"
       />
@@ -86,7 +86,7 @@ const ProfileForm = () => {
         value={values.password || ""}
         name={"password"}
         error={!isValid}
-        errorText={errors.password || ""}
+        errorText={errors!.password || ""}
         extraClass={"mb-6"}
         autoComplete={"password"}
       />

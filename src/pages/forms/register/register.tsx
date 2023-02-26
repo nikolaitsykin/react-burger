@@ -2,7 +2,7 @@ import {
   Button,
   EmailInput,
   Input,
-  PasswordInput,
+  PasswordInput
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import React, { ChangeEvent, FormEvent, useEffect } from "react";
 import { Link, Redirect, useHistory, useLocation } from "react-router-dom";

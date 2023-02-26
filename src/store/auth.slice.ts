@@ -13,7 +13,7 @@ export const initialState: IAuthState = {
   email: "",
   password: "",
   isAuth: false,
-  token: ""
+  token: "",
 };
 
 export const authSlice = createSlice({
@@ -26,9 +26,13 @@ export const authSlice = createSlice({
       state.password = action.payload.password;
       state.isAuth = true;
     },
-    refreshUser(state, 
-      action: PayloadAction<{ user: { name: string; email: string }, isAuth : boolean }>
-      ) {
+    refreshUser(
+      state,
+      action: PayloadAction<{
+        user: { name: string; email: string };
+        isAuth: boolean;
+      }>
+    ) {
       state.name = action.payload.user.name;
       state.email = action.payload.user.email;
       state.isAuth = true;

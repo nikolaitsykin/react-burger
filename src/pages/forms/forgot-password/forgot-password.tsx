@@ -73,7 +73,7 @@ export default function ForgotPasswordPage() {
           onChange={(e) => handleChange(e)}
           value={values.email || ""}
           error={!isValid}
-          errorText={errors.email || ""}
+          errorText={errors!.email || ""}
           name={"email"}
           placeholder={"Enter email"}
           extraClass={"mb-6 m0-a"}

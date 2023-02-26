@@ -7,15 +7,14 @@ interface IFormState {
 
 export function useAuth(props: IFormUser) {
   const [values, setValues] = useState<IFormState>({ ...props });
-  const [errors, setErrors] = useState<IFormState>({});
+  const [errors, setErrors] = useState<IFormState | null>(null);
   const [isValid, setIsValid] = useState<boolean>(true);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
     setErrors({ ...errors, [name]: e.target.validationMessage });
-    // @ts-ignore
-    setIsValid(e.target.closest("form").checkValidity());
+    setIsValid(e.target.closest("form")!.checkValidity());
   };
 
   const resetForm = useCallback(

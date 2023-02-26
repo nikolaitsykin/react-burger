@@ -48,37 +48,38 @@ const initialState: IngredientsState = {
   total: 0,
 };
 
+type IngredientTypes = "bun" | "sauce" | "main";
+
 export const ingredientsSlice = createSlice({
   name: "ingredients",
   initialState,
   reducers: {
     getIngredients(state, action: PayloadAction<IIngredient[]>) {
-      state.items = action.payload;
-      // @ts-ignore
+      state.items = action.payload.map((items) => {
+        return {...items, count: 0, uid: "" }
+      })
       state.bun = action.payload
         .filter((item) => {
           const type = item.type;
           return type === _BUN;
         })
-        .map((item: object) => {
+        .map((item) => {
           return { ...item, count: 0, uid: "" };
         });
-      // @ts-ignore
       state.sauce = action.payload
         .filter((item) => {
           const type = item.type;
           return type === _SAUCE;
         })
-        .map((item: object) => {
+        .map((item) => {
           return { ...item, count: 0, uid: "" };
         });
-      // @ts-ignore
       state.main = action.payload
         .filter((item) => {
           const type = item.type;
           return type === _MAIN;
         })
-        .map((item: object) => {
+        .map((item) => {
           return { ...item, count: 0, uid: "" };
         });
       state.isRequested = false;
@@ -98,20 +99,18 @@ export const ingredientsSlice = createSlice({
           count: action.payload.count++,
         },
       ];
-      // @ts-ignore
-      state[action.payload.type] = state[action.payload.type].map(
-        (item: IIngredient) => {
-          if (item._id === action.payload._id) {
-            return { ...item, count: item.count + 1 };
-          } else {
-            return item;
-          }
+      state[action.payload.type as IngredientTypes] = state[
+        action.payload.type as IngredientTypes
+      ].map((item: IIngredient) => {
+        if (item._id === action.payload._id) {
+          return { ...item, count: item.count + 1 };
+        } else {
+          return item;
         }
-      );
+      });
     },
     addBun(state, action: PayloadAction<IIngredient>) {
       state.selectedBun = action.payload;
-      // @ts-ignore
       state.bun = state.bun.map((item: IIngredient) => {
         if (item._id === action.payload._id) {
           return {
@@ -130,16 +129,15 @@ export const ingredientsSlice = createSlice({
       state.selectedIngredients = state.selectedIngredients.filter(
         (item: IIngredient) => item.uid !== action.payload.uid
       );
-      // @ts-ignore
-      state[action.payload.type] = state[action.payload.type].map(
-        (item: IIngredient) => {
-          if (item._id === action.payload._id) {
-            return { ...item, count: --item.count };
-          } else {
-            return item;
-          }
+      state[action.payload.type as IngredientTypes] = state[
+        action.payload.type as IngredientTypes
+      ].map((item: IIngredient) => {
+        if (item._id === action.payload._id) {
+          return { ...item, count: --item.count };
+        } else {
+          return item;
         }
-      );
+      });
     },
     getTotalPrice(state) {
       state.total =

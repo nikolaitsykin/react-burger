@@ -1,6 +1,4 @@
-import { Location } from "history";
-import { Route, Switch, useLocation } from "react-router-dom";
-import { ILocationState } from "../../../models/models";
+import { Route, Switch } from "react-router-dom";
 import ForgotPasswordPage from "../../../pages/forms/forgot-password/forgot-password";
 import LoginPage from "../../../pages/forms/login/login";
 import RegisterPage from "../../../pages/forms/register/register";
@@ -18,17 +16,13 @@ import {
   _PROFILE_PATH,
   _REGISTER_PATH,
   _RESET_PASSWORD_PATH,
-  _ROOT_PATH,
+  _ROOT_PATH
 } from "../../../utils/constants";
 import ProtectedRoute from "./ProtectedRoute/ProtectedRoute";
 
-export default function AppRouter() {
-  const location = useLocation<ILocationState | Location<any> | any>();
-
-  const background = location.state && location.state.background;
-
+const AppRouter = () => {
   return (
-    <Switch location={background || location}>
+    <Switch>
       <Route path={_ROOT_PATH} exact component={HomePage} />
       <Route path={_LOGIN_PATH} exact component={LoginPage} />
       <Route path={_REGISTER_PATH} exact component={RegisterPage} />
@@ -46,3 +40,4 @@ export default function AppRouter() {
   );
 };
 
+export default AppRouter;

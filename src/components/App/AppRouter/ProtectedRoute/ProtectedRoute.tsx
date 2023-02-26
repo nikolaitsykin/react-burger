@@ -1,27 +1,17 @@
-import React, { ReactElement, useEffect } from "react";
-import { Redirect, Route, useLocation } from "react-router-dom";
+import { useEffect } from "react";
+import { Redirect, Route, RouteProps, useLocation } from "react-router-dom";
 import { useActions } from "../../../../hooks/actions";
 import { useAppSelector } from "../../../../hooks/redux";
 import { ILocationState } from "../../../../models/models";
 import { RootState } from "../../../../store";
 import {
   useGetUserQuery,
-  useRefreshTokenMutation,
+  useRefreshTokenMutation
 } from "../../../../store/api";
 import { _LOGIN_PATH } from "../../../../utils/constants";
 import { getCookie, setCookie } from "../../../../utils/cookie";
 
-interface ProtectedRouteProps {
-  component: () => ReactElement;
-  exact: boolean;
-  path: string;
-}
-
-const ProtectedRoute = ({
-  component: Comp,
-  path,
-  ...rest
-}: ProtectedRouteProps) => {
+const ProtectedRoute = ({ component: Comp, path, ...rest }: RouteProps) => {
   const location = useLocation<ILocationState>();
   const { isAuth } = useAppSelector((state: RootState) => state.auth);
   const { loginSuccess, refreshUser } = useActions();
@@ -59,35 +49,24 @@ const ProtectedRoute = ({
             }
             refreshUser(res);
           }
-        })
-        .catch(() => {});
+        });
     }
   });
 
-  return (
-    <Route
-      path={path}
-      {...rest}
-      render={(props) => {
-        return isAuth ? (
-          // @ts-ignore
+  if (!isAuth)
+    return (
+      <Redirect
+        to={{
+          pathname: _LOGIN_PATH,
+          state: {
+            from: location,
+            error: "Please login first!",
+          },
+        }}
+      />
+    );
 
-          <Comp {...props} />
-        ) : (
-          <Redirect
-            to={{
-              pathname: _LOGIN_PATH,
-              state: {
-                from: location,
-                error: "Please login first!",
-              },
-            }}
-          />
-        );
-      }}
-    />
-  );
+  return <Route path={path} {...rest} component={Comp} />;
 };
 
 export default ProtectedRoute;
-

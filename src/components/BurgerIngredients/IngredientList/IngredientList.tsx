@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import React, { useRef } from "react";
 import { useActions } from "../../../hooks/actions";
 import { useAppSelector } from "../../../hooks/redux";
 import { _BUN, _MAIN, _SAUCE } from "../../../utils/constants";
@@ -10,6 +10,7 @@ const IngredientList = () => {
   const { bun, sauce, main, isRequested, isRequestedError } = useAppSelector(
     (state) => state.ingredients
   );
+
   const { chooseTab } = useActions();
 
   const itemsRef = useRef<HTMLInputElement>(null);
@@ -17,34 +18,40 @@ const IngredientList = () => {
   const sauceRef = useRef<HTMLInputElement>(null);
   const mainRef = useRef<HTMLInputElement>(null);
 
-  function selectTab(
-    itemsRef: any,
-    bunRef: any,
-    sauceRef: any,
-    mainRef: any
+  const selectTab = (
+    itemsRef: React.RefObject<HTMLInputElement>,
+    bunRef: React.RefObject<HTMLInputElement>,
+    sauceRef: React.RefObject<HTMLInputElement>,
+    mainRef: React.RefObject<HTMLInputElement>
+  ) => {
+    if (
+      itemsRef.current !== null &&
+      bunRef.current !== null &&
+      sauceRef.current !== null &&
+      mainRef.current !== null
+    ) {
+      const buns = Math.abs(
+        bunRef.current.getBoundingClientRect().top -
+          itemsRef.current.getBoundingClientRect().top
+      );
+      const sauces = Math.abs(
+        sauceRef.current.getBoundingClientRect().top -
+          itemsRef.current.getBoundingClientRect().top
+      );
+      const toppings = Math.abs(
+        mainRef.current.getBoundingClientRect().top -
+          itemsRef.current.getBoundingClientRect().top
+      );
 
-  ) {
-    const buns = Math.abs(
-      bunRef?.current.getBoundingClientRect().top -
-        itemsRef?.current.getBoundingClientRect().top
-    );
-    const sauces = Math.abs(
-      sauceRef?.current.getBoundingClientRect().top -
-        itemsRef?.current.getBoundingClientRect().top
-    );
-    const toppings = Math.abs(
-      mainRef?.current.getBoundingClientRect().top -
-        itemsRef?.current.getBoundingClientRect().top
-    );
-
-    if (buns < sauces && buns < toppings) {
-      chooseTab(_BUN);
-    } else if (sauces < buns && sauces < toppings) {
-      chooseTab(_SAUCE);
-    } else if (toppings < buns && toppings < sauces) {
-      chooseTab(_MAIN);
+      if (buns < sauces && buns < toppings) {
+        chooseTab(_BUN);
+      } else if (sauces < buns && sauces < toppings) {
+        chooseTab(_SAUCE);
+      } else if (toppings < buns && toppings < sauces) {
+        chooseTab(_MAIN);
+      }
     }
-  }
+  };
 
   if (isRequestedError) {
     return <p>Error has occured</p>;

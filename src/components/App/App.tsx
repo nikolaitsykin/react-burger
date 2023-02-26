@@ -1,4 +1,3 @@
-import { Location } from "history";
 import React, { useEffect } from "react";
 import { Route, Router, useHistory, useLocation } from "react-router-dom";
 import { useActions } from "../../hooks/actions";
@@ -11,10 +10,9 @@ import AppHeader from "./AppHeader/AppHeader";
 import AppRouter from "./AppRouter/AppRouter";
 import classes from "./Main.module.css";
 
-
 export default function App() {
   const history = useHistory();
-  const location = useLocation<ILocationState | Location<any> | any>();
+  const location = useLocation<ILocationState>();
   const background = location.state && location.state.background;
 
   const { getIngredients, getIngredientsFailed, openModal, closeModal } =
@@ -27,8 +25,12 @@ export default function App() {
   } = useGetIngredientsQuery("");
 
   useEffect(() => {
-    isIngredientsGetSuccess && getIngredients(ingredients);
-    isIngredientsError && getIngredientsFailed();
+    if (isIngredientsGetSuccess) {
+      getIngredients(ingredients);
+    }
+    if (isIngredientsError) {
+      getIngredientsFailed();
+    }
   }, [
     ingredients,
     isIngredientsGetSuccess,

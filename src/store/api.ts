@@ -1,7 +1,9 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import {
   IIngredient,
-  IOrderResponse, IServerResponse, IUser,
+  IOrderResponse,
+  IServerResponse,
+  IUser,
   IUserResponse
 } from "../models/models";
 import {
@@ -38,7 +40,10 @@ export const api = createApi({
         body: JSON.stringify({ ingredients: dataIds }),
       }),
     }),
-    forgotPassword: build.mutation<{ success: boolean; message: string }, string | undefined>({
+    forgotPassword: build.mutation<
+      { success: boolean; message: string },
+      string | undefined
+    >({
       query: (email: string) => ({
         url: _EMAIL_RESET_URL,
         method: `POST`,
@@ -48,7 +53,10 @@ export const api = createApi({
         body: JSON.stringify({ email: email }),
       }),
     }),
-    resetPassword: build.mutation<{ success: boolean; message: string },string>({
+    resetPassword: build.mutation<
+      { success: boolean; message: string },
+      string
+    >({
       query: (userData) => ({
         url: _PASSWORD_RESET_URL,
         method: "POST",
@@ -78,7 +86,10 @@ export const api = createApi({
         body: JSON.stringify(userData),
       }),
     }),
-    logout: build.mutation<{ success: boolean; message: string }, string | undefined>({
+    logout: build.mutation<
+      { success: boolean; message: string },
+      string | undefined
+    >({
       query: (token: string) => ({
         url: _LOGOUT_URL,
         method: "POST",
