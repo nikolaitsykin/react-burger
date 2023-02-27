@@ -39,3 +39,7 @@
 .componentList::-webkit-scrollbar-thumb {
   background-color: #8585ad;
 }
+
+.hovered {
+  border: 1px solid #000;
+}

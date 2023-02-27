@@ -4,15 +4,14 @@
   "private": true,
   "dependencies": {
     "@redux-devtools/extension": "^3.2.3",
-    "@reduxjs/toolkit": "^1.8.6",
+    "@reduxjs/toolkit": "1.8.6",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.5.2",
     "@types/node": "^16.18.3",
-    "@types/react": "^18.0.25",
-    "@types/react-dom": "^18.0.6",
-    "@types/react-router-dom": "^5.3.3",
+    "@types/react": "18.0.21",
+    "@types/react-dom": "18.0.6",
     "@ya.praktikum/react-developer-burger-ui-components": "^1.14.0",
     "async": "^3.2.4",
     "create-store": "^1.0.0",
@@ -59,6 +58,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react-router-dom": "5.3.3",
     "prettier": "2.7.1",
     "redux-devtools-extension": "^2.13.9"
   }
