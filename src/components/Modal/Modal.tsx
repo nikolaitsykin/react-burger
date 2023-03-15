@@ -1,15 +1,10 @@
-import { ReactElement, useEffect } from "react";
+import { useEffect } from "react";
+import { ModalProps } from "../../services/types/modalTypes";
 import classes from "./Modal.module.css";
-import ModalHeader from "./ModalHeader/ModalHeader";
-import ModalOverlay from "./ModalOverlay/ModalOverlay";
+import { ModalHeader } from "./ModalHeader/ModalHeader";
+import { ModalOverlay } from "./ModalOverlay/ModalOverlay";
 
-interface ModalProps {
-  header?: string;
-  onClose: () => void;
-  children: ReactElement;
-}
-
-const Modal = ({ header, onClose, children }: ModalProps) => {
+export const Modal = ({ header, onClose, children }: ModalProps) => {
   useEffect(() => {
     const onEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
@@ -27,11 +22,8 @@ const Modal = ({ header, onClose, children }: ModalProps) => {
   return (
     <ModalOverlay onClose={onClose}>
       <div className={classes.container}>
-        <ModalHeader onClose={onClose} header={header} />
-        {children}
+        {header && <ModalHeader onClose={onClose} header={header} />} {children}
       </div>
     </ModalOverlay>
   );
 };
-
-export default Modal;

@@ -2,11 +2,11 @@ import "normalize.css";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
-import App from "./components/App/App";
+import { App } from "./components/App/App";
 import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
-import { store } from "./store";
+import { store } from "./services/store/store";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

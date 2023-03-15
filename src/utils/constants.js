@@ -30,6 +30,9 @@ export const _LOGOUT_URL = `${_MAIN_URL}auth/logout`;
 export const _TOKEN_URL = `${_MAIN_URL}auth/token`;
 export const _USER_URL = `${_MAIN_URL}auth/user`;
 
+export const _WS_URL = "wss://norma.nomoreparties.space/orders";
+
+
 export const _ROOT_PATH = "/";
 export const _LOGIN_PATH = "/login";
 export const _REGISTER_PATH = "/register";
@@ -38,5 +41,8 @@ export const _RESET_PASSWORD_PATH = "/reset-password";
 export const _PROFILE_PATH = "/profile";
 export const _ORDER_PATH = "/profile/order";
 export const _ORDERS_PATH = "/profile/orders";
+export const _ORDERS_ID_PATH = "/profile/orders/:id";
 export const _INGREDIENTS_PATH = "/ingredients/";
 export const _INGREDIENTS_ID_PATH = "/ingredients/:ingredientId";
+export const _FEED_PATH = "/feed";
+export const _FEED_ID_PATH = "/feed/:id";

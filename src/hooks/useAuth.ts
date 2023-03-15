@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import { IFormUser } from "../models/models";
+import { IFormUser } from "../services/types/userTypes";
 
 interface IFormState {
   [key: string]: string;
@@ -7,7 +7,7 @@ interface IFormState {
 
 export function useAuth(props: IFormUser) {
   const [values, setValues] = useState<IFormState>({ ...props });
-  const [errors, setErrors] = useState<IFormState | null>(null);
+  const [errors, setErrors] = useState<IFormState | null>();
   const [isValid, setIsValid] = useState<boolean>(true);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

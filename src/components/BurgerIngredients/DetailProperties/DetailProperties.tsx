@@ -1,12 +1,8 @@
-import { IIngredient } from "../../../models/models";
-import PropertiesItem from "../PropertiesItem/PropertiesItem";
+import { DetailPropertiesProps } from "../../../services/types/ingredientsTypes";
+import { PropertiesItem } from "../PropertiesItem/PropertiesItem";
 import classes from "./DetailProperties.module.css";
 
-interface DetailPropertiesProps {
-  ingredient: IIngredient;
-}
-
-const DetailProperties = ({ ingredient }: DetailPropertiesProps) => {
+export const DetailProperties = ({ ingredient }: DetailPropertiesProps) => {
   const { calories, proteins, fat, carbohydrates } = ingredient;
 
   return (
@@ -18,5 +14,3 @@ const DetailProperties = ({ ingredient }: DetailPropertiesProps) => {
     </div>
   );
 };
-
-export default DetailProperties;

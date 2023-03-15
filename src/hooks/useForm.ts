@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { IFormUser } from "../models/models";
+import { IFormUser } from "../services/types/userTypes";
 
 export function useForm(inputValues: IFormUser) {
   const [values, setValues] = useState(inputValues);

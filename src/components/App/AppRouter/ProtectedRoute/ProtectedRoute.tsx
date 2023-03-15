@@ -2,18 +2,21 @@ import { useEffect } from "react";
 import { Redirect, Route, RouteProps, useLocation } from "react-router-dom";
 import { useActions } from "../../../../hooks/actions";
 import { useAppSelector } from "../../../../hooks/redux";
-import { ILocationState } from "../../../../models/models";
-import { RootState } from "../../../../store";
 import {
   useGetUserQuery,
   useRefreshTokenMutation
-} from "../../../../store/api";
+} from "../../../../services/store/api";
+import { ILocationState } from "../../../../services/types/locationTypes";
 import { _LOGIN_PATH } from "../../../../utils/constants";
-import { getCookie, setCookie } from "../../../../utils/cookie";
+import { deleteCookie, getCookie, setCookie } from "../../../../utils/cookie";
 
-const ProtectedRoute = ({ component: Comp, path, ...rest }: RouteProps) => {
+export const ProtectedRoute = ({
+  component: Comp,
+  path,
+  ...rest
+}: RouteProps) => {
   const location = useLocation<ILocationState>();
-  const { isAuth } = useAppSelector((state: RootState) => state.auth);
+  const { isAuth } = useAppSelector((state) => state.auth);
   const { loginSuccess, refreshUser } = useActions();
   const token = document.cookie ? getCookie("token") : "";
   const refreshToken = document.cookie ? getCookie("refreshToken") : "";
@@ -44,6 +47,8 @@ const ProtectedRoute = ({ component: Comp, path, ...rest }: RouteProps) => {
           if (res) {
             const authToken = res.accessToken?.split("Bearer ")[1];
             if (authToken) {
+              deleteCookie("token", getCookie("token"));
+              deleteCookie("refreshToken", getCookie("refreshToken"));
               setCookie("token", authToken);
               setCookie("refreshToken", res.refreshToken);
             }
@@ -65,8 +70,5 @@ const ProtectedRoute = ({ component: Comp, path, ...rest }: RouteProps) => {
         }}
       />
     );
-
-  return <Route path={path} {...rest} component={Comp} />;
+  else return <Route path={path} {...rest} component={Comp} />;
 };
-
-export default ProtectedRoute;

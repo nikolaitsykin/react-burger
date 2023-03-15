@@ -2,19 +2,18 @@ import {
   Counter,
   CurrencyIcon
 } from "@ya.praktikum/react-developer-burger-ui-components";
+import { Identifier } from "dnd-core";
 import { useDrag } from "react-dnd";
 import { Link, useLocation } from "react-router-dom";
-import { IIngredient, ILocationState } from "../../../models/models";
+import {
+  IIngredient,
+  IngredientItemProps
+} from "../../../services/types/ingredientsTypes";
+import { ILocationState } from "../../../services/types/locationTypes";
 import { _INGREDIENTS_PATH } from "../../../utils/constants";
 import classes from "./IngredientItem.module.css";
-import { Identifier } from "dnd-core";
 
-
-interface IngredientItemProps {
-  item: IIngredient;
-}
-
-const IngredientItem = ({ item }: IngredientItemProps) => {
+export const IngredientItem = ({ item }: IngredientItemProps) => {
   const location = useLocation<ILocationState>();
 
   const ingredientId = item["_id"];
@@ -59,5 +58,3 @@ const IngredientItem = ({ item }: IngredientItemProps) => {
     return <></>;
   }
 };
-
-export default IngredientItem;
