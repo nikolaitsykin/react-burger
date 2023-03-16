@@ -8,19 +8,19 @@ export const Tabs = () => {
   const { currentTab } = useAppSelector((state) => state.ingredients);
   const { chooseTab } = useActions();
 
-  const tabsToggle = (e: string)  => {
+  const tabsToggle = (e: string) => {
     chooseTab(e);
     const tabTarget = document.querySelector(`[data-tab-target="${e}"]`);
     const ingredientList = document.querySelector(`[data-list]`);
     if (ingredientList && tabTarget) {
-    ingredientList.scrollTo({
-      top:
-        tabTarget.getBoundingClientRect().top -
-        ingredientList.getBoundingClientRect().top +
-        ingredientList.scrollTop,
-      behavior: "smooth",
-    });
-  }
+      ingredientList.scrollTo({
+        top:
+          tabTarget.getBoundingClientRect().top -
+          ingredientList.getBoundingClientRect().top +
+          ingredientList.scrollTop,
+        behavior: "smooth",
+      });
+    }
   };
   return (
     <div className={classes.container}>
@@ -48,5 +48,3 @@ export const Tabs = () => {
     </div>
   );
 };
-
-export default Tabs;

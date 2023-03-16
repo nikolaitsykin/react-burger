@@ -2,24 +2,19 @@ import {
   ConstructorElement,
   DragIcon
 } from "@ya.praktikum/react-developer-burger-ui-components";
+import { Identifier } from "dnd-core";
 import { useRef } from "react";
 import { useDrag, useDrop, XYCoord } from "react-dnd";
 import { useActions } from "../../../hooks/actions";
-import { IIngredient } from "../../../models/models";
+import { ConstructorItemProps } from "../../../services/types/constructorTypes";
+import { IIngredient } from "../../../services/types/ingredientsTypes";
 import classes from "./ConstructorItem.module.css";
-import { Identifier } from "dnd-core";
 
-export interface ConstructorItemProps {
-  item: IIngredient;
-  index: number;
-  onMove: (dragIndex: number, hoverIndex: number) => void;
-}
-
-export default function ConstructorItem({
+export const ConstructorItem = ({
   item,
   index,
   onMove,
-}: ConstructorItemProps) {
+}: ConstructorItemProps) => {
   const { removeIngredient, getTotalPrice } = useActions();
 
   const ref = useRef<HTMLInputElement>(null);
@@ -93,4 +88,4 @@ export default function ConstructorItem({
       />
     </div>
   );
-}
+};

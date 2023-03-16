@@ -12,6 +12,12 @@
   align-items: center;
 }
 
+.order_name {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .order_status {
   display: flex;
   flex-direction: column;

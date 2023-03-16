@@ -1,0 +1,12 @@
+.orders_list {
+  width: 100%;
+  overflow-y: auto;
+  max-height: 750px;
+  width: 584px;
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+}

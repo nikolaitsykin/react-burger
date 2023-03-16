@@ -1,13 +1,8 @@
-import { MouseEventHandler, ReactElement } from "react";
-import Portal from "../Portal/Portal";
+import { ModalOverlayProps } from "../../../services/types/modalTypes";
+import { Portal } from "../Portal/Portal";
 import classes from "./ModalOverlay.module.css";
 
-interface ModalOverlayProps {
-  children: ReactElement;
-  onClose: MouseEventHandler<HTMLDivElement>;
-}
-
-const ModalOverlay = ({ children, onClose }: ModalOverlayProps) => {
+export const ModalOverlay = ({ children, onClose }: ModalOverlayProps) => {
   return (
     <Portal>
       <div className={classes.container} onClick={onClose}>
@@ -18,5 +13,3 @@ const ModalOverlay = ({ children, onClose }: ModalOverlayProps) => {
     </Portal>
   );
 };
-
-export default ModalOverlay;

@@ -1,26 +1,24 @@
-import { Link, Redirect, useHistory, useLocation } from "react-router-dom";
+import { NavLink, Redirect, useHistory, useLocation } from "react-router-dom";
 import { useActions } from "../../hooks/actions";
 import { useAppSelector } from "../../hooks/redux";
-import { useLogoutMutation } from "../../store/api";
-import { deleteCookie, getCookie } from "../../utils/cookie";
+import { useLogoutMutation } from "../../services/store/api";
+import { ILocationState } from "../../services/types/locationTypes";
 import {
   _LOGIN_PATH,
   _ORDERS_PATH,
   _PROFILE_PATH,
   _ROOT_PATH
 } from "../../utils/constants";
+import { deleteCookie, getCookie } from "../../utils/cookie";
 import classes from "./ProfileSideBar.module.css";
-import { ILocationState } from "../../models/models";
 
-const ProfileSideBar = () => {
+export const ProfileSideBar = () => {
   const history = useHistory();
   const location = useLocation<ILocationState>();
   const token: string | undefined = document.cookie
     ? getCookie("refreshToken")
     : undefined;
-
   const { isAuth } = useAppSelector((state) => state.auth);
-
   const [logoutRequest] = useLogoutMutation();
   const { logout } = useActions();
 
@@ -38,15 +36,15 @@ const ProfileSideBar = () => {
       .then(() => {
         logout();
       })
-      .catch((res) => {
-        console.log(res);
+      .catch((err) => {
+        console.log(err);
       });
   };
 
   if (isAuth) {
     return (
       <div className={classes.nav_container}>
-        <Link to={_PROFILE_PATH} className={classes.nav_item}>
+        <NavLink to={_PROFILE_PATH} className={classes.nav_item}>
           <p
             className={`${
               location.pathname === _PROFILE_PATH ? "" : "text_color_inactive"
@@ -54,8 +52,8 @@ const ProfileSideBar = () => {
           >
             Profile
           </p>
-        </Link>
-        <Link to={_ORDERS_PATH} className={classes.nav_item}>
+        </NavLink>
+        <NavLink to={_ORDERS_PATH} className={classes.nav_item}>
           <p
             className={`${
               location.pathname === _ORDERS_PATH ? "" : "text_color_inactive"
@@ -63,7 +61,7 @@ const ProfileSideBar = () => {
           >
             Order history
           </p>
-        </Link>
+        </NavLink>
         <button className={classes.logout_button} onClick={handleLogout}>
           <p className="text text_type_main-medium pt-4 pr-4 pb-4 text_color_inactive">
             Exit
@@ -78,5 +76,3 @@ const ProfileSideBar = () => {
     return <Redirect to={location?.state?.from || _ROOT_PATH} />;
   }
 };
-
-export default ProfileSideBar;

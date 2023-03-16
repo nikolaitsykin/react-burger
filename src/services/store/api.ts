@@ -1,11 +1,8 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import {
-  IIngredient,
-  IOrderResponse,
-  IServerResponse,
-  IUser,
-  IUserResponse
-} from "../models/models";
+import { IIngredient, IIngredientResponse } from "../types/ingredientsTypes";
+import { IOrderResponse } from "../types/orderTypes";
+import { IUser, IUserResponse } from "../types/userTypes";
+
 import {
   _EMAIL_RESET_URL,
   _ITEMS_URL,
@@ -16,7 +13,8 @@ import {
   _REGISTER_URL,
   _TOKEN_URL,
   _USER_URL
-} from "../utils/constants";
+} from "../../utils/constants";
+import { getCookie } from "../../utils/cookie";
 
 export const api = createApi({
   reducerPath: "api",
@@ -28,7 +26,7 @@ export const api = createApi({
       query: () => ({
         url: _ITEMS_URL,
       }),
-      transformResponse: (response: IServerResponse) => response.data,
+      transformResponse: (response: IIngredientResponse) => response.data,
     }),
     postOrderData: build.mutation<IOrderResponse, string[]>({
       query: (dataIds: string[]) => ({
@@ -36,6 +34,7 @@ export const api = createApi({
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          authorization: `Bearer ${getCookie("token")}`,
         },
         body: JSON.stringify({ ingredients: dataIds }),
       }),
@@ -124,7 +123,7 @@ export const api = createApi({
         body: JSON.stringify({
           token: token,
         }),
-        transformResponse: (response: IServerResponse) => response.data,
+        transformResponse: (response: IIngredientResponse) => response.data,
       }),
     }),
     patchUserData: build.mutation<IUserResponse, IUser>({
