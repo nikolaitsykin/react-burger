@@ -6,6 +6,7 @@ export const FeedHistory = () => {
     (state) => state.ws.message
   );
 
+
   return (
     <section className={classes.history}>
       <div className={`${classes.orders_wrap} mb-15`}>
@@ -14,12 +15,12 @@ export const FeedHistory = () => {
           <div className={classes.orders_inner}>
             {orders &&
               orders.map(
-                (order, index) =>
+                (order, index, ) =>
                   order.status === "done" &&
                   index < 14 && (
                     <p
                       className="text text_type_digits-default text_color_success mb-2"
-                      key={index}
+                      key={order._id}
                     >
                       {order.number}
                     </p>
@@ -37,7 +38,7 @@ export const FeedHistory = () => {
                   index < 14 && (
                     <p
                       className="text text_type_digits-default text_color_progress mb-2"
-                      key={index}
+                      key={order._id}
                     >
                       {order.number}
                     </p>

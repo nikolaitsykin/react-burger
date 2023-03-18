@@ -12,6 +12,7 @@ export const FeedDetailsPage = () => {
     return () => {
       close();
     };
-  });
+  }, [open, close]);
+
   return <FeedDetails />;
 };

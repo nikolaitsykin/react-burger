@@ -1,6 +1,6 @@
 import {
   Button,
-  CurrencyIcon
+  CurrencyIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useMemo } from "react";
 import { useHistory } from "react-router-dom";
@@ -40,8 +40,9 @@ export const Total = () => {
   }, [selectedIngredients, selectedBun]);
 
   const handleOrder = () => {
-    openRequestModal();
     if (isAuth && selectedBun._id && selectedIngredients.length) {
+      openRequestModal();
+
       return makeOrder(dataIds)
         .unwrap()
         .then((res) => {

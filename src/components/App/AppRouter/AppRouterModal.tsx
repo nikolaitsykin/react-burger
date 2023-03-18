@@ -28,7 +28,7 @@ export const AppRouterModal = () => {
       <Route
         path={_INGREDIENTS_ID_PATH}
         children={
-          <Modal header="Ingredient details" onClose={() => handleModalClose()}>
+          <Modal header="Ingredient details" onClose={handleModalClose}>
             <IngredientPage />
           </Modal>
         }
@@ -36,7 +36,7 @@ export const AppRouterModal = () => {
       <Route
         path={_FEED_ID_PATH}
         children={
-          <Modal onClose={() => handleModalClose()}>
+          <Modal onClose={handleModalClose}>
             <FeedDetails />
           </Modal>
         }
@@ -44,7 +44,7 @@ export const AppRouterModal = () => {
       <Route
         path={_ORDERS_ID_PATH}
         children={
-          <Modal onClose={() => handleModalClose()}>
+          <Modal onClose={handleModalClose}>
             <FeedDetails />
           </Modal>
         }
@@ -53,7 +53,7 @@ export const AppRouterModal = () => {
         path={_ORDER_PATH}
         exact={true}
         children={
-          <Modal onClose={() => handleModalClose()}>
+          <Modal onClose={handleModalClose}>
             <Order />
           </Modal>
         }

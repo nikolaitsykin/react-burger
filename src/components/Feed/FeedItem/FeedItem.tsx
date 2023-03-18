@@ -14,7 +14,7 @@ export const FeedItem = ({ order }: IOrderProps) => {
   const { ingredientItems } = useAppSelector((state) => state.ingredients);
   let total = 0;
 
-  ingredientItems.map((ingredient) => {
+  ingredientItems.forEach((ingredient) => {
     if (order.ingredients.indexOf(ingredient._id) >= 0) {
       let index = order.ingredients.indexOf(ingredient._id);
       let indices = [];

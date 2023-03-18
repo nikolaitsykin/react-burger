@@ -16,7 +16,7 @@ export const FeedDetails = () => {
     orders && orders.find((order: { _id: string }) => order._id === id);
 
   let total = 0;
-  ingredientItems.map((ingredient) => {
+  ingredientItems.forEach((ingredient) => {
     if (order && order.ingredients.indexOf(ingredient._id) >= 0) {
       let ingredientIndex = order.ingredients.indexOf(ingredient._id);
       let indices = [];

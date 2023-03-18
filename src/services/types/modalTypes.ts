@@ -10,8 +10,12 @@ export interface ModalProps {
   children?: ReactElement;
 }
 
+export interface ModalHeaderProps {
+  header?: string;
+}
+
 export interface ModalOverlayProps {
-  children: ReactElement;
+  children?: ReactElement;
   onClose: MouseEventHandler<HTMLDivElement>;
 }
 
