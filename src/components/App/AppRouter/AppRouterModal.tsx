@@ -14,7 +14,6 @@ import { Modal } from "../../Modal/Modal";
 
 export const AppRouterModal = () => {
   const history = useHistory();
-
   const { closeModal } = useActions();
 
   const handleModalClose = () => {

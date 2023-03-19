@@ -19,10 +19,15 @@ export interface IOrderRequest {
   totalToday: number;
 }
 
+export interface IOrderResponseItem {
+  number: number;
+}
+
+
 export interface IOrderResponse {
   success: boolean;
   name: string;
-  order: IOrder;
+  order: IOrderResponseItem;
 }
 
 export interface OrderDetailsProps {

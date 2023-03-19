@@ -10,7 +10,7 @@ import classes from "./FeedDetails.module.css";
 export const FeedDetails = () => {
   const { id } = useParams<{ id: string }>();
   const { ingredientItems } = useAppSelector((state) => state.ingredients);
-  const { orders } = useAppSelector((state) => state.ws.message);
+  const { message: { orders } } = useAppSelector((state) => state.ws);
 
   const order =
     orders && orders.find((order: { _id: string }) => order._id === id);

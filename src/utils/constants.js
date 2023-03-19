@@ -21,7 +21,7 @@ export const _MAIN = "main";
 
 export const _MAIN_URL = "https://norma.nomoreparties.space/api/";
 export const _ITEMS_URL = `${_MAIN_URL}ingredients`;
-export const _ORDER_URL = `${_MAIN_URL}orders`;
+export const _ORDERS_URL = `${_MAIN_URL}orders`;
 export const _EMAIL_RESET_URL = `${_MAIN_URL}password-reset`;
 export const _PASSWORD_RESET_URL = `${_MAIN_URL}password-reset/reset`;
 export const _REGISTER_URL = `${_MAIN_URL}auth/register`;

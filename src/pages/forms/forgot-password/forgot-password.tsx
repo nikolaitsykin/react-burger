@@ -94,5 +94,6 @@ export const ForgotPasswordPage = () => {
         </p>
       </form>
     );
-  } else return <Redirect to={location?.state?.from.pathname || _ROOT_PATH} />;
+  }
+  return <Redirect to={location?.state?.from.pathname || _ROOT_PATH} />;
 };

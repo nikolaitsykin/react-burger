@@ -5,3 +5,7 @@ export interface IAuthState {
   token: string;
   isAuth: boolean;
 }
+
+export interface IFormState {
+  [key: string]: string;
+}

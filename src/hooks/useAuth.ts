@@ -1,13 +1,10 @@
 import React, { useCallback, useState } from "react";
+import { IFormState } from "../services/types/authTypes";
 import { IFormUser } from "../services/types/userTypes";
 
-interface IFormState {
-  [key: string]: string;
-}
-
-export function useAuth(props: IFormUser) {
+export const useAuth = (props: IFormUser) => {
   const [values, setValues] = useState<IFormState>({ ...props });
-  const [errors, setErrors] = useState<IFormState | null>();
+  const [errors, setErrors] = useState<IFormState>({});
   const [isValid, setIsValid] = useState<boolean>(true);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,4 +32,4 @@ export function useAuth(props: IFormUser) {
     setValues,
     setIsValid,
   };
-}
+};

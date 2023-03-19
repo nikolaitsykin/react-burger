@@ -19,7 +19,7 @@ export const Modal = ({ header, onClose, children }: ModalProps) => {
     return () => {
       window.removeEventListener("keydown", onEscape);
     };
-  });
+  }, [onClose]);
 
   return (
     <Portal>

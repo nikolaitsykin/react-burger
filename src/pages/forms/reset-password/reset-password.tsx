@@ -1,7 +1,7 @@
 import {
   Button,
   Input,
-  PasswordInput
+  PasswordInput,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import React, { FormEvent } from "react";
 import { Link, Redirect, useHistory, useLocation } from "react-router-dom";
@@ -31,7 +31,7 @@ export const ResetPasswordPage = () => {
 
   const newPasswordSet = (e: FormEvent) => {
     e.preventDefault();
-    resetPassword(``)
+    resetPassword(state)
       .unwrap()
       .then(() => {
         history.replace({
@@ -83,9 +83,8 @@ export const ResetPasswordPage = () => {
         </p>
       </form>
     );
-  } else {
-    return (
-      <Redirect to={location?.state?.from.pathname || _FORGOT_PASSWORD_PATH} />
-    );
   }
+  return (
+    <Redirect to={location?.state?.from.pathname || _FORGOT_PASSWORD_PATH} />
+  );
 };

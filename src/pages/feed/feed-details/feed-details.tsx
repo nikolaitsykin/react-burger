@@ -8,7 +8,6 @@ export const FeedDetailsPage = () => {
 
   useEffect(() => {
     open(getOrders());
-
     return () => {
       close();
     };

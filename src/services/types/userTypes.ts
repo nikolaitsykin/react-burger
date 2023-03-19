@@ -16,7 +16,6 @@ export interface IUserResponse {
   success: boolean;
   message?: string;
   user?: IUser;
-  accessToken: string;
+  accessToken?: string;
   refreshToken?: string;
-  data: IUserResponse;
 }

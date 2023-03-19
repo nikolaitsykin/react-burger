@@ -8,10 +8,7 @@ export const OrderDetailsPage = () => {
 
   useEffect(() => {
     open(getPersonalOrders());
+  }, [open, close]);
 
-    return () => {
-      close();
-    };
-  });
   return <FeedDetails />;
 };

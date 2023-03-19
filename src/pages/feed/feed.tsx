@@ -2,11 +2,35 @@ import { useEffect } from "react";
 import { FeedHistory } from "../../components/Feed/FeedHistory/FeedHistoty";
 import { FeedList } from "../../components/Feed/FeedList/FeedList";
 import { useActions } from "../../hooks/actions";
+import { useGetIngredientsQuery } from "../../services/store/api";
 import { getOrders } from "../../services/store/reducers/ws.slice";
 import classes from "./feed.module.css";
 
 export const FeedPage = () => {
   const { open, close } = useActions();
+
+  const { getIngredients, getIngredientsFailed } = useActions();
+
+  const {
+    isError: isIngredientsError,
+    data: ingredients,
+    isSuccess: isIngredientsGetSuccess,
+  } = useGetIngredientsQuery("");
+
+  useEffect(() => {
+    if (isIngredientsGetSuccess) {
+      getIngredients(ingredients);
+    }
+    if (isIngredientsError) {
+      getIngredientsFailed();
+    }
+  }, [
+    ingredients,
+    isIngredientsGetSuccess,
+    isIngredientsError,
+    getIngredients,
+    getIngredientsFailed,
+  ]);
 
   useEffect(() => {
     open(getOrders());
@@ -14,7 +38,7 @@ export const FeedPage = () => {
     return () => {
       close();
     };
-  });
+  }, []);
 
   return (
     <>
