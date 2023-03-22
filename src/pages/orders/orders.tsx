@@ -14,9 +14,7 @@ export const OrdersPage = () => {
   const { open, close } = useActions();
   const location = useLocation<ILocationState>();
   const { isAuth } = useAppSelector((state) => state.auth);
-
   const { getIngredients, getIngredientsFailed } = useActions();
-
   const {
     isError: isIngredientsError,
     data: ingredients,

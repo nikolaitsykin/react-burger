@@ -6,9 +6,7 @@ import { getPersonalOrders } from "../../../services/store/reducers/ws.slice";
 
 export const OrderDetailsPage = () => {
   const { open, close } = useActions();
-
   const { getIngredients, getIngredientsFailed } = useActions();
-
   const {
     isError: isIngredientsError,
     data: ingredients,

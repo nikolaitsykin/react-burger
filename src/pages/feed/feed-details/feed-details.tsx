@@ -6,16 +6,7 @@ import { getOrders } from "../../../services/store/reducers/ws.slice";
 
 export const FeedDetailsPage = () => {
   const { open, close } = useActions();
-
-  useEffect(() => {
-    open(getOrders());
-    return () => {
-      close();
-    };
-  }, [open, close]);
-
   const { getIngredients, getIngredientsFailed } = useActions();
-
   const {
     isError: isIngredientsError,
     data: ingredients,
@@ -36,6 +27,13 @@ export const FeedDetailsPage = () => {
     getIngredients,
     getIngredientsFailed,
   ]);
+
+  useEffect(() => {
+    open(getOrders());
+    return () => {
+      close();
+    };
+  }, [open, close]);
 
   return <FeedDetails />;
 };

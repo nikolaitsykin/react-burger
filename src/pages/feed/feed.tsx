@@ -8,9 +8,7 @@ import classes from "./feed.module.css";
 
 export const FeedPage = () => {
   const { open, close } = useActions();
-
   const { getIngredients, getIngredientsFailed } = useActions();
-
   const {
     isError: isIngredientsError,
     data: ingredients,
