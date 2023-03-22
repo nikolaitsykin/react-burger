@@ -8,13 +8,12 @@ import { Link, Redirect, useLocation } from "react-router-dom";
 import { useActions } from "../../../hooks/actions";
 import { useAppSelector } from "../../../hooks/redux";
 import { useForm } from "../../../hooks/useForm";
-import { ILocationState } from "../../../models/models";
-import { RootState } from "../../../store";
 import {
   useGetUserQuery,
   useLoginMutation,
   useRefreshTokenMutation,
-} from "../../../store/api";
+} from "../../../services/store/api";
+import { ILocationState } from "../../../services/types/locationTypes";
 import {
   _FORGOT_PASSWORD_PATH,
   _REGISTER_PATH,
@@ -23,9 +22,9 @@ import {
 import { getCookie, setCookie } from "../../../utils/cookie";
 import classes from "./login.module.css";
 
-export default function LoginPage() {
+export const LoginPage = () => {
   const location = useLocation<ILocationState>();
-  const { isAuth } = useAppSelector((state: RootState) => state.auth);
+  const { isAuth } = useAppSelector((state) => state.auth);
 
   const [login] = useLoginMutation();
   const { setUser, loginSuccess, refreshUser } = useActions();
@@ -48,6 +47,7 @@ export default function LoginPage() {
   useEffect(() => {
     isGetUserSuccess && loginSuccess();
     isGetUserSuccess && refreshUser(userData);
+
     if (!isRefreshLoading && isGetUserError && refreshToken) {
       refreshTokenPost(refreshToken);
       if (isRefreshSuccess && refreshData) {
@@ -61,7 +61,19 @@ export default function LoginPage() {
         }
       }
     }
-  });
+  }, [
+    isGetUserSuccess,
+    isGetUserError,
+    refreshData,
+    refreshToken,
+    refreshTokenPost,
+    isRefreshLoading,
+    isRefreshSuccess,
+    userData,
+    setUser,
+    loginSuccess,
+    refreshUser,
+  ]);
 
   const { values, handleChange } = useForm({
     email: "",
@@ -86,7 +98,7 @@ export default function LoginPage() {
         }
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
       });
   };
 
@@ -95,19 +107,16 @@ export default function LoginPage() {
       <form className={classes.login_container} onSubmit={handleLogin}>
         <p className="text text_type_main-medium mb-6">Log In</p>
         <EmailInput
-          onChange={handleChange}
+          onChange={(e) => handleChange(e)}
           value={values.email || ""}
           name={"email"}
           extraClass="mb-6"
-          autoComplete="username"
         />
         <PasswordInput
-          onChange={handleChange}
+          onChange={(e) => handleChange(e)}
           value={values.password || ""}
-          placeholder="Password"
           name={"password"}
           extraClass="mb-6"
-          autoComplete="current-password"
         />
         <Button type="primary" htmlType="submit" extraClass="mb-20">
           Enter
@@ -121,5 +130,6 @@ export default function LoginPage() {
         </p>
       </form>
     );
-  } else return <Redirect to={location?.state?.from.pathname || _ROOT_PATH} />;
-}
+  }
+  return <Redirect to={location?.state?.from.pathname || _ROOT_PATH} />;
+};

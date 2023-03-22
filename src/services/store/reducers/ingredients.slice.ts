@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IIngredient } from "../models/models";
-import { _BUN, _MAIN, _SAUCE } from "../utils/constants";
+import { IIngredient, IngredientsState } from "../../types/ingredientsTypes";
+import { _BUN, _MAIN, _SAUCE } from "../../../utils/constants";
 
 export const emptyIngredient: IIngredient = {
   _id: "",
@@ -20,22 +20,8 @@ export const emptyIngredient: IIngredient = {
   index: 0,
 };
 
-interface IngredientsState {
-  items: IIngredient[];
-  bun: IIngredient[];
-  sauce: IIngredient[];
-  main: IIngredient[];
-  isRequested: boolean;
-  isRequestedError: boolean;
-  selectedIngredient: IIngredient;
-  selectedIngredients: IIngredient[];
-  selectedBun: IIngredient;
-  currentTab: string;
-  total: number;
-}
-
 const initialState: IngredientsState = {
-  items: [],
+  ingredientItems: [],
   bun: [],
   sauce: [],
   main: [],
@@ -55,9 +41,9 @@ export const ingredientsSlice = createSlice({
   initialState,
   reducers: {
     getIngredients(state, action: PayloadAction<IIngredient[]>) {
-      state.items = action.payload.map((items) => {
-        return {...items, count: 0, uid: "" }
-      })
+      state.ingredientItems = action.payload.map((items) => {
+        return { ...items, count: 0, uid: "" };
+      });
       state.bun = action.payload
         .filter((item) => {
           const type = item.type;

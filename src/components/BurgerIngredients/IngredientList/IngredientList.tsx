@@ -2,11 +2,11 @@ import React, { useRef } from "react";
 import { useActions } from "../../../hooks/actions";
 import { useAppSelector } from "../../../hooks/redux";
 import { _BUN, _MAIN, _SAUCE } from "../../../utils/constants";
-import Loader from "../../Loader/Loader";
-import IngredientItem from "../IngredientItem/IngredientItem";
+import { Loader } from "../../Loader/Loader";
+import { IngredientItem } from "../IngredientItem/IngredientItem";
 import classes from "./IngredientList.module.css";
 
-const IngredientList = () => {
+export const IngredientList = () => {
   const { bun, sauce, main, isRequested, isRequestedError } = useAppSelector(
     (state) => state.ingredients
   );
@@ -114,5 +114,3 @@ const IngredientList = () => {
       </div>
     );
 };
-
-export default IngredientList;

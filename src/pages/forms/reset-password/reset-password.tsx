@@ -6,12 +6,12 @@ import {
 import React, { FormEvent } from "react";
 import { Link, Redirect, useHistory, useLocation } from "react-router-dom";
 import { useAppSelector } from "../../../hooks/redux";
-import { ILocationState } from "../../../models/models";
-import { useResetPasswordMutation } from "../../../store/api";
+import { useResetPasswordMutation } from "../../../services/store/api";
+import { ILocationState } from "../../../services/types/locationTypes";
 import { _FORGOT_PASSWORD_PATH, _LOGIN_PATH } from "../../../utils/constants";
 import classes from "./reset-password.module.css";
 
-export default function ResetPasswordPage() {
+export const ResetPasswordPage = () => {
   const location = useLocation<ILocationState>();
   const history = useHistory();
   const { isAuth } = useAppSelector((state) => state.auth);
@@ -31,7 +31,7 @@ export default function ResetPasswordPage() {
 
   const newPasswordSet = (e: FormEvent) => {
     e.preventDefault();
-    resetPassword(``)
+    resetPassword(state)
       .unwrap()
       .then(() => {
         history.replace({
@@ -83,9 +83,8 @@ export default function ResetPasswordPage() {
         </p>
       </form>
     );
-  } else {
-    return (
-      <Redirect to={location?.state?.from.pathname || _FORGOT_PASSWORD_PATH} />
-    );
   }
-}
+  return (
+    <Redirect to={location?.state?.from.pathname || _FORGOT_PASSWORD_PATH} />
+  );
+};

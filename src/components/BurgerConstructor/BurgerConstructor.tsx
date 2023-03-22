@@ -2,19 +2,18 @@ import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-comp
 import { nanoid } from "nanoid";
 import { useCallback } from "react";
 import { useDrop } from "react-dnd";
+import no_image from "../../accets/images/no_image.png";
 import { useActions } from "../../hooks/actions";
 import { useAppSelector } from "../../hooks/redux";
-import no_image from "../../images/no_image.png";
-import { IIngredient } from "../../models/models";
-import { RootState } from "../../store";
+import { IIngredient } from "../../services/types/ingredientsTypes";
 import { _BUN } from "../../utils/constants";
 import classes from "./BurgerConstructor.module.css";
-import ConstructorItem from "./ConstructorItem/ConstructorItem";
-import Total from "./Total/Total";
+import { ConstructorItem } from "./ConstructorItem/ConstructorItem";
+import { Total } from "./Total/Total";
 
-const BurgerConstructor = () => {
+export const BurgerConstructor = () => {
   const { selectedBun, selectedIngredients, isRequested, isRequestedError } =
-    useAppSelector((store: RootState) => store.ingredients);
+    useAppSelector((state) => state.ingredients);
 
   const { addBun, getTotalPrice, addIngredient, updateSelectedIngredients } =
     useActions();
@@ -103,5 +102,3 @@ const BurgerConstructor = () => {
     return <></>;
   }
 };
-
-export default BurgerConstructor;

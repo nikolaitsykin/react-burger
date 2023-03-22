@@ -1,16 +1,14 @@
-import doneImg from "../../../images/done_img.svg";
+import doneImg from "../../../accets/images/done_img.svg";
+import { OrderDetailsProps } from "../../../services/types/orderTypes";
 import classes from "./OrderDetails.module.css";
 
-interface OrderDetailsProps {
-  name: string;
-  number: number;
-}
-
-const OrderDetails = ({ name, number }: OrderDetailsProps) => {
+export const OrderDetails = ({ name, number }: OrderDetailsProps) => {
   return (
     <div className={classes.container}>
       <div className={classes.order_number}>
         <p className="text text_type_digits-large mb-8">{number}</p>
+        </div>
+        <div className={classes.order_name}>
         <p className="text text_type_main-medium mb-15">{name}</p>
       </div>
       <div className={classes.image}>
@@ -31,5 +29,3 @@ const OrderDetails = ({ name, number }: OrderDetailsProps) => {
     </div>
   );
 };
-
-export default OrderDetails;

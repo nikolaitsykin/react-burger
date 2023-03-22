@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { _ROOT_PATH } from "../../utils/constants";
 import classes from "./page-not-found-404.module.css";
 
-const PageNotFound404 = () => {
+export const PageNotFound404 = () => {
   return (
     <div className={classes.page_not_found_404_container}>
       <p className="text text_type_main-medium mb-6">
@@ -23,5 +23,3 @@ const PageNotFound404 = () => {
     </div>
   );
 };
-
-export default PageNotFound404;

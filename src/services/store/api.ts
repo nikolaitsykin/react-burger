@@ -1,22 +1,20 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import {
-  IIngredient,
-  IOrderResponse,
-  IServerResponse,
-  IUser,
-  IUserResponse
-} from "../models/models";
+import { IIngredient, IIngredientResponse } from "../types/ingredientsTypes";
+import { IOrderResponse } from "../types/orderTypes";
+import { IUser, IUserResponse } from "../types/userTypes";
+
 import {
   _EMAIL_RESET_URL,
   _ITEMS_URL,
   _LOGIN_URL,
   _LOGOUT_URL,
-  _ORDER_URL,
+  _ORDERS_URL,
   _PASSWORD_RESET_URL,
   _REGISTER_URL,
   _TOKEN_URL,
-  _USER_URL
-} from "../utils/constants";
+  _USER_URL,
+} from "../../utils/constants";
+import { getCookie } from "../../utils/cookie";
 
 export const api = createApi({
   reducerPath: "api",
@@ -28,16 +26,17 @@ export const api = createApi({
       query: () => ({
         url: _ITEMS_URL,
       }),
-      transformResponse: (response: IServerResponse) => response.data,
+      transformResponse: (response: IIngredientResponse) => response.data,
     }),
     postOrderData: build.mutation<IOrderResponse, string[]>({
-      query: (dataIds: string[]) => ({
-        url: _ORDER_URL,
+      query: (addedIds: string[]) => ({
+        url: _ORDERS_URL,
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          authorization: `Bearer ${getCookie("token")}`,
         },
-        body: JSON.stringify({ ingredients: dataIds }),
+        body: JSON.stringify({ ingredients: addedIds }),
       }),
     }),
     forgotPassword: build.mutation<
@@ -45,7 +44,7 @@ export const api = createApi({
       string | undefined
     >({
       query: (email: string) => ({
-        url: _EMAIL_RESET_URL,
+        url: _PASSWORD_RESET_URL,
         method: `POST`,
         headers: {
           "Content-Type": "application/json",
@@ -53,19 +52,18 @@ export const api = createApi({
         body: JSON.stringify({ email: email }),
       }),
     }),
-    resetPassword: build.mutation<
-      { success: boolean; message: string },
-      string
-    >({
-      query: (userData) => ({
-        url: _PASSWORD_RESET_URL,
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userData),
-      }),
-    }),
+    resetPassword: build.mutation<{ success: boolean; message: string }, IUser>(
+      {
+        query: (userData) => ({
+          url: _EMAIL_RESET_URL,
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(userData),
+        }),
+      }
+    ),
     register: build.mutation<IUserResponse, IUser>({
       query: (userData: { email: string; password: string; name: string }) => ({
         url: _REGISTER_URL,
@@ -87,7 +85,10 @@ export const api = createApi({
       }),
     }),
     logout: build.mutation<
-      { success: boolean; message: string },
+      {
+        success: boolean;
+        message: string;
+      },
       string | undefined
     >({
       query: (token: string) => ({
@@ -113,18 +114,13 @@ export const api = createApi({
       query: (token: string) => ({
         url: _TOKEN_URL,
         method: "POST",
-        mode: "cors",
-        cache: "no-cache",
-        credentials: "same-origin",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/",
         },
-        redirect: "follow",
-        referrerPolicy: "no-referrer",
         body: JSON.stringify({
           token: token,
         }),
-        transformResponse: (response: IServerResponse) => response.data,
+        transformResponse: (response: IIngredientResponse) => response.data,
       }),
     }),
     patchUserData: build.mutation<IUserResponse, IUser>({

@@ -1,10 +1,10 @@
 import { ProfileIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import { Link, useLocation } from "react-router-dom";
+import { ILocationState } from "../../../../services/types/locationTypes";
 import { _PROFILE_PATH } from "../../../../utils/constants";
 import classes from "./AppHeaderLogin.module.css";
-import { ILocationState } from "../../../../models/models";
 
-const AppHeaderLogin = () => {
+export const AppHeaderLogin = () => {
   const location = useLocation<ILocationState>();
   const isActive = location.pathname.includes(_PROFILE_PATH);
 
@@ -23,5 +23,3 @@ const AppHeaderLogin = () => {
     </div>
   );
 };
-
-export default AppHeaderLogin;

@@ -2,19 +2,22 @@ import {
   Button,
   EmailInput,
   Input,
-  PasswordInput
+  PasswordInput,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import React, { ChangeEvent, FormEvent, useEffect } from "react";
 import { Link, Redirect, useHistory, useLocation } from "react-router-dom";
 import { useActions } from "../../../hooks/actions";
 import { useAppSelector } from "../../../hooks/redux";
-import { ILocationState } from "../../../models/models";
-import { useLazyGetUserQuery, useRegisterMutation } from "../../../store/api";
+import {
+  useLazyGetUserQuery,
+  useRegisterMutation,
+} from "../../../services/store/api";
+import { ILocationState } from "../../../services/types/locationTypes";
 import { _LOGIN_PATH, _ROOT_PATH } from "../../../utils/constants";
 import { getCookie } from "../../../utils/cookie";
 import classes from "./register.module.css";
 
-export default function RegisterPage() {
+export const RegisterPage = () => {
   const history = useHistory();
   const location = useLocation<ILocationState>();
   const { isAuth } = useAppSelector((state) => state.auth);
@@ -111,5 +114,6 @@ export default function RegisterPage() {
         </p>
       </form>
     );
-  } else return <Redirect to={location?.state?.from.pathname || _ROOT_PATH} />;
-}
+  }
+  return <Redirect to={location?.state?.from.pathname || _ROOT_PATH} />;
+};

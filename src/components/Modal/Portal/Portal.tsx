@@ -1,11 +1,8 @@
-import { ReactElement, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import PortalReactDOM from "react-dom";
+import { PortalProps } from "../../../services/types/modalTypes";
 
-interface PortalProps {
-  children: ReactElement;
-}
-
-const Portal = ({ children }: PortalProps) => {
+export const Portal = ({ children }: PortalProps) => {
   const [modalContainer] = useState(() => document.createElement("div"));
 
   useEffect(() => {
@@ -18,5 +15,3 @@ const Portal = ({ children }: PortalProps) => {
 
   return PortalReactDOM.createPortal(children, modalContainer);
 };
-
-export default Portal;

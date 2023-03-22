@@ -2,15 +2,9 @@
   position: fixed;
   inset: 0;
   box-sizing: border-box;
-  z-index: 1;
+  z-index: 6;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(0, 0, 0, 30%);
-}
-
-.overlay {
-  position: absolute;
-  inset: 1;
-  cursor: pointer;
+  background-color: rgba(0, 0, 0, 70%);
 }

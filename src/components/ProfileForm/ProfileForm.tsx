@@ -6,15 +6,12 @@ import { FormEvent, useEffect, useState } from "react";
 import { useActions } from "../../hooks/actions";
 import { useAppSelector } from "../../hooks/redux";
 import { useAuth } from "../../hooks/useAuth";
-import { RootState } from "../../store";
-import { usePatchUserDataMutation } from "../../store/api";
+import { usePatchUserDataMutation } from "../../services/store/api";
 import { getCookie } from "../../utils/cookie";
 import classes from "./ProfileForm.module.css";
 
-const ProfileForm = () => {
-  const { name, email, password } = useAppSelector(
-    (store: RootState) => store.auth
-  );
+export const ProfileForm = () => {
+  const { name, email, password } = useAppSelector((state) => state.auth);
 
   const token = document.cookie ? getCookie("token") : "";
 
@@ -49,9 +46,9 @@ const ProfileForm = () => {
       .then(() => {
         refreshUser(values);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.error(err));
   };
-  console.log(errors)
+
   return (
     <form
       className={classes.form_container}
@@ -64,7 +61,7 @@ const ProfileForm = () => {
         value={values.name || ""}
         name={"name"}
         error={!isValid}
-        errorText={errors!.name || ""}
+        errorText={errors.name || ""}
         extraClass="mb-6"
         autoComplete="username"
       />
@@ -75,7 +72,7 @@ const ProfileForm = () => {
         value={values.email || ""}
         name={"email"}
         error={!isValid}
-        errorText={errors!.email || ""}
+        errorText={errors.email || ""}
         extraClass="mb-6"
         autoComplete="email"
       />
@@ -86,7 +83,7 @@ const ProfileForm = () => {
         value={values.password || ""}
         name={"password"}
         error={!isValid}
-        errorText={errors!.password || ""}
+        errorText={errors.password || ""}
         extraClass={"mb-6"}
         autoComplete={"password"}
       />
@@ -109,5 +106,3 @@ const ProfileForm = () => {
     </form>
   );
 };
-
-export default ProfileForm;
