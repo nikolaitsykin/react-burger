@@ -7,8 +7,8 @@ export const OrderDetails = ({ name, number }: OrderDetailsProps) => {
     <div className={classes.container}>
       <div className={classes.order_number}>
         <p className="text text_type_digits-large mb-8">{number}</p>
-        </div>
-        <div className={classes.order_name}>
+      </div>
+      <div className={classes.order_name}>
         <p className="text text_type_main-medium mb-15">{name}</p>
       </div>
       <div className={classes.image}>

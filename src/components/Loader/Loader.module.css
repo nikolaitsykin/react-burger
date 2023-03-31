@@ -16,8 +16,8 @@
 .content {
   color: antiquewhite;
   position: absolute;
-  top: 65px;
-  left: 40px;
+  top: 55px;
+  left: 50px;
 }
 
 @keyframes rotate {

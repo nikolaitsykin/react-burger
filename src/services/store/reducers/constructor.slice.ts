@@ -8,7 +8,7 @@ interface IBurgerConstructorState {
   requestModalIsOpened: boolean;
 }
 
-const initialState: IBurgerConstructorState = {
+export const initialState: IBurgerConstructorState = {
   orderName: "",
   orderNumber: 0,
   orderModalIsOpened: false,
@@ -28,6 +28,10 @@ export const constructorSlice = createSlice({
     },
     closeOrderModal(state: IBurgerConstructorState) {
       state.orderModalIsOpened = false;
+    },
+    resetOrderModal(state) {
+      state.orderName = "";
+      state.orderNumber = 0;
     },
     openRequestModal(state: IBurgerConstructorState) {
       state.requestModalIsOpened = true;

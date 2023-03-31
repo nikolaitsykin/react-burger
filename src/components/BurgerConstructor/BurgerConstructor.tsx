@@ -29,6 +29,7 @@ export const BurgerConstructor = () => {
         newItem.uid = nanoid(8);
         addIngredient(newItem);
         getTotalPrice();
+        console.log(newItem)
       }
     },
     collect: (monitor) => ({

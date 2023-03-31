@@ -4,7 +4,7 @@ import { getCookie } from "../../../utils/cookie";
 import { IOrderRequest } from "../../types/orderTypes";
 import { IWsState } from "../../types/socketTypes";
 
-const initialState: IWsState = {
+export const initialState: IWsState = {
   status: "",
   connectionError: "",
   message: {

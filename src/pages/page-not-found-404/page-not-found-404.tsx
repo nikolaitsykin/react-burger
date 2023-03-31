@@ -17,7 +17,7 @@ export const PageNotFound404 = () => {
           htmlType="submit"
           extraClass="mb-20"
         >
-          Back
+          Return to the main page
         </Button>
       </Link>
     </div>

@@ -5,7 +5,7 @@ export const Loader = () => {
     <div className={classes.container}>
       <div className={classes.loader}></div>
       <p className={`${classes.content} text text_type_main-small`}>
-        Loading...
+        Please wait...
       </p>
     </div>
   );

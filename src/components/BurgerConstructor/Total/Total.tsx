@@ -11,7 +11,7 @@ import { _LOGIN_PATH } from "../../../utils/constants";
 import classes from "./Total.module.css";
 
 export const Total = () => {
-  const [makeOrder, { isError }] = usePostOrderDataMutation();
+  const [makeOrder, { isError, isLoading }] = usePostOrderDataMutation();
 
   const history = useHistory();
   const { isAuth } = useAppSelector((state) => state.auth);
@@ -26,6 +26,7 @@ export const Total = () => {
     openOrderModal,
     openRequestModal,
     closeRequestModal,
+    resetOrderModal,
   } = useActions();
 
   const dataIds = useMemo(() => {
@@ -40,16 +41,17 @@ export const Total = () => {
   }, [selectedIngredients, selectedBun]);
 
   const handleOrder = () => {
-    if (isAuth && selectedBun._id && selectedIngredients.length) {
+    if (isAuth) {
       openRequestModal();
+      resetOrderModal();
 
       return makeOrder(dataIds)
         .unwrap()
         .then((res) => {
           getOrderData(res);
+          resetConstructor();
           closeRequestModal();
           openOrderModal();
-          resetConstructor();
         });
     } else {
       history.replace(_LOGIN_PATH);
@@ -67,9 +69,14 @@ export const Total = () => {
         htmlType={"submit"}
         type="primary"
         size="large"
-        onClick={() => handleOrder()}
+        onClick={handleOrder}
+        disabled={selectedIngredients.length < 1}
       >
-        Proceed to checkout
+        {!selectedIngredients.length
+          ? "Add ingredients"
+          : isLoading
+          ? "Processing..."
+          : "Proceed to checkout"}
       </Button>
     </div>
   );

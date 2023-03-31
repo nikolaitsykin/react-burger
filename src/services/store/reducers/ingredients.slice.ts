@@ -20,7 +20,7 @@ export const emptyIngredient: IIngredient = {
   index: 0,
 };
 
-const initialState: IngredientsState = {
+export const initialState: IngredientsState = {
   ingredientItems: [],
   bun: [],
   sauce: [],

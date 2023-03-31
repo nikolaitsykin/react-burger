@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IOrderRequest } from "../../types/orderTypes";
 
-const initialState: IOrderRequest = {
+export const initialState: IOrderRequest = {
   orders: [],
   total: 0,
   totalToday: 0,
