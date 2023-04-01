@@ -9,7 +9,6 @@ describe("wsSlice", () => {
     const result = wsReducer(undefined, {} as AnyAction);
     expect(result).toEqual(initialState);
   });
-
   it("Should change status with connecting action", () => {
     const result = wsReducer(initialState, connecting);
     expect(result).toEqual({
