@@ -11,7 +11,7 @@ import { _LOGIN_PATH } from "../../../utils/constants";
 import classes from "./Total.module.css";
 
 export const Total = () => {
-  const [makeOrder, { isError }] = usePostOrderDataMutation();
+  const [makeOrder, { isError, isLoading }] = usePostOrderDataMutation();
 
   const history = useHistory();
   const { isAuth } = useAppSelector((state) => state.auth);
@@ -26,6 +26,7 @@ export const Total = () => {
     openOrderModal,
     openRequestModal,
     closeRequestModal,
+    resetOrderModal,
   } = useActions();
 
   const dataIds = useMemo(() => {
@@ -42,6 +43,7 @@ export const Total = () => {
   const handleOrder = () => {
     if (isAuth && selectedBun._id && selectedIngredients.length) {
       openRequestModal();
+      resetOrderModal();
 
       return makeOrder(dataIds)
         .unwrap()
@@ -67,9 +69,16 @@ export const Total = () => {
         htmlType={"submit"}
         type="primary"
         size="large"
-        onClick={() => handleOrder()}
+        onClick={handleOrder}
+        data-testid={
+          isAuth ? "burger-constructor-order" : "burger-constructor-auth"
+        }
       >
-        Proceed to checkout
+        {!selectedIngredients.length
+          ? "Select ingredients"
+          : isLoading
+          ? "Processing..."
+          : "Proceed to cheeckout"}
       </Button>
     </div>
   );

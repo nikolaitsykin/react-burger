@@ -57,6 +57,7 @@ export const BurgerConstructor = () => {
       <div
         className={`${classes.container} ${isHover ? classes.hovered : ""}`}
         ref={ingredientDropTarget}
+        data-testid="burger-constructor"
       >
         <div className={"pl-6"}>
           <ConstructorElement

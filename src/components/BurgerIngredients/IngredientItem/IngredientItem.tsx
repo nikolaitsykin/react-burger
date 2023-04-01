@@ -1,13 +1,13 @@
 import {
   Counter,
-  CurrencyIcon
+  CurrencyIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { Identifier } from "dnd-core";
 import { useDrag } from "react-dnd";
 import { Link, useLocation } from "react-router-dom";
 import {
   IIngredient,
-  IngredientItemProps
+  IngredientItemProps,
 } from "../../../services/types/ingredientsTypes";
 import { ILocationState } from "../../../services/types/locationTypes";
 import { _INGREDIENTS_PATH } from "../../../utils/constants";
@@ -36,6 +36,7 @@ export const IngredientItem = ({ item }: IngredientItemProps) => {
           state: { background: location },
         }}
         key={ingredientId}
+        data-testid={`ingredient-cart-${ingredientId}`}
       >
         <div className={classes.container} ref={dragRef}>
           <div className={classes.top}>

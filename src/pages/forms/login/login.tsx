@@ -111,14 +111,22 @@ export const LoginPage = () => {
           value={values.email || ""}
           name={"email"}
           extraClass="mb-6"
+          data-testid="email-input"
         />
         <PasswordInput
           onChange={(e) => handleChange(e)}
           value={values.password || ""}
           name={"password"}
           extraClass="mb-6"
+          data-testid="password-input"
+
         />
-        <Button type="primary" htmlType="submit" extraClass="mb-20">
+        <Button
+          type="primary"
+          htmlType="submit"
+          extraClass="mb-20"
+          data-testid="login-input"
+        >
           Enter
         </Button>
         <p className="text text_type_main-default mb-4">

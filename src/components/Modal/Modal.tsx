@@ -24,10 +24,14 @@ export const Modal = ({ header, onClose, children }: ModalProps) => {
   return (
     <Portal>
       <>
-        <div className={classes.container}>
+        <div className={classes.container} data-testid="modal">
           <div className={classes.header}>
             {header && <ModalHeader header={header} />}
-            <button className={classes.button} onClick={onClose}>
+            <button
+              className={classes.button}
+              onClick={onClose}
+              data-testid="modal-close-button"
+            >
               <CloseIcon type="primary" />
             </button>
           </div>

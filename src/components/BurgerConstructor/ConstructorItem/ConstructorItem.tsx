@@ -1,6 +1,6 @@
 import {
   ConstructorElement,
-  DragIcon
+  DragIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { Identifier } from "dnd-core";
 import { useRef } from "react";
@@ -49,14 +49,16 @@ export const ConstructorItem = ({
       const clientOffset = monitor.getClientOffset();
       const hoverClientY = (clientOffset as XYCoord).y - rect.top;
 
-      if (itemIndex < hoverIndex && hoverClientY < hoverMiddleY) {
+      if (itemIndex && itemIndex < hoverIndex && hoverClientY < hoverMiddleY) {
         return;
       }
-      if (itemIndex > hoverIndex && hoverClientY > hoverMiddleY) {
+      if (itemIndex && itemIndex > hoverIndex && hoverClientY > hoverMiddleY) {
         return;
       }
-      onMove(itemIndex, hoverIndex);
-      item.index = hoverIndex;
+      if (itemIndex) {
+        onMove(itemIndex, hoverIndex);
+        item.index = hoverIndex;
+      }
     },
   });
 
