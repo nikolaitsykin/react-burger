@@ -110,6 +110,7 @@ export const LoginPage = () => {
           onChange={(e) => handleChange(e)}
           value={values.email || ""}
           name={"email"}
+          placeholder={"E-mail"}
           extraClass="mb-6"
           data-testid="email-input"
         />
@@ -117,6 +118,7 @@ export const LoginPage = () => {
           onChange={(e) => handleChange(e)}
           value={values.password || ""}
           name={"password"}
+          placeholder={"Password"}
           extraClass="mb-6"
           data-testid="password-input"
 
