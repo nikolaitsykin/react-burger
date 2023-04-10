@@ -1,5 +1,5 @@
 Project  "Stellar Burger"
-## https://flipexe.github.io/react-burger/
+## https://nikolaitsykin.github.io/
 
 Project written with `react`, `typescript`, `redux`, `redux-toolkit`, `redux-toolkit-query`, `websockets`, `react-dnd`
 
