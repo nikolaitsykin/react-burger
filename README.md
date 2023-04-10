@@ -1,6 +1,6 @@
 Project  "Stellar Burger"
 
-## https://nikolaitsykin.github.io/
+## https://nikolaitsykin.github.io/react-burger/
 
 Project written with `react`, `typescript`, `redux`, `redux-toolkit`, `redux-toolkit-query`, `websockets`, `react-dnd`
 

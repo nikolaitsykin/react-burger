@@ -2,7 +2,7 @@
   "name": "react-burger",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://nikolaitsykin.github.io/",
+  "homepage": "https://nikolaitsykin.github.io/react-burger/",
   "dependencies": {
     "@redux-devtools/extension": "^3.2.3",
     "@reduxjs/toolkit": "1.8.6",
