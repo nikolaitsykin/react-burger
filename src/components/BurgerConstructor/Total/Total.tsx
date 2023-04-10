@@ -78,7 +78,7 @@ export const Total = () => {
           ? "Select ingredients"
           : isLoading
           ? "Processing..."
-          : "Proceed to cheeckout"}
+          : "Proceed to checkout"}
       </Button>
     </div>
   );
