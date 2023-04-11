@@ -7,7 +7,8 @@ This project is in Russian localization because of APIs I used, but Google trans
 
 All starts with a 404 page because otherwise, you won't see it on github pages(routing is not working correctly). Press the button in the middle or use navigation bar in the Header.
 
-![Getting Started](src/accets/images/404_page.png)
+<img width="1440" alt="404_page" src="https://user-images.githubusercontent.com/104075088/231213918-fad6ba35-70e5-4fdc-a9db-800e2bc242b2.png">
+
 
 The main page
 <img width="1440" alt="main_page" src="https://user-images.githubusercontent.com/104075088/231213480-1e6e7860-bf36-48b8-9b79-fb970f4844fb.png">
