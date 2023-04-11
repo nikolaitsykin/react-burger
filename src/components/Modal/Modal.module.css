@@ -15,10 +15,8 @@
   padding: 20px;
 }
 
-.header{
-  display: flex;
+.header {
   margin: 20px;
-
 }
 
 .button {
@@ -36,5 +34,3 @@
 .button:active {
   scale: 0.9;
 }
-
-

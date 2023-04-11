@@ -1,28 +1,25 @@
-Project  "Stellar Burger"
+Project  "Stellar Burger" project application was written with the following technology stack: TypeScript, React, Redux, Redux-Toolkit, Websockets, React-dnd, testing - Jest and Cypress.
 
+Deployment: 
 ## https://nikolaitsykin.github.io/react-burger/
 
-Project written with `react`, `typescript`, `redux`, `redux-toolkit`, `redux-toolkit-query`, `websockets`, `react-dnd`
+This project is in Russian localization because of APIs I used, but Google translate can easily do the trick.
 
-## Available Scripts
+All starts with a 404 page because otherwise, you won't see it on github pages(routing is not working correctly). Press the button in the middle or use navigation bar in the Header.
 
-In the project directory, you can run:
+![Getting Started](src/accets/images/404_page.png)
 
-### `npm start`
+The main page
+![Main page](src/accets/images/main_page.png)
 
-Runs the app in the development mode.\
+You should drag the ingredients to fill the burger constructor
+![Dragging ingredient](src/accets/images/draggging.png)
 
-### `npm test`
+The main page with a burger constructor
+![Assembled burger](src/accets/images/assembled_burger.png)
 
-Launches the test runner in the interactive watch mode.\
+The orders feed page
+![Feed](src/accets/images/orders_page.png)
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-
-### `npm run cypress`
-Launches e2e testing
-
-### `npm run deploy`
-Builds and launches project to the GitHub-pages
-
+The authorized user's profile page with his order feed
+![User feed](src/accets/images/user_orders_page.png)

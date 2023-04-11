@@ -10,6 +10,7 @@ import { _BUN } from "../../utils/constants";
 import classes from "./BurgerConstructor.module.css";
 import { ConstructorItem } from "./ConstructorItem/ConstructorItem";
 import { Total } from "./Total/Total";
+import { Loader } from "../Loader/Loader";
 
 export const BurgerConstructor = () => {
   const { selectedBun, selectedIngredients, isRequested, isRequestedError } =
@@ -51,7 +52,11 @@ export const BurgerConstructor = () => {
     return <p>Error</p>;
   }
   if (isRequested) {
-    return <p>Loading...</p>;
+    return (
+      <div className={classes.loader}>
+        <Loader />
+      </div>
+    );
   } else if (selectedIngredients) {
     return (
       <div

@@ -45,8 +45,3 @@
 .counter {
   position: absolute;
 }
-
-.dragging {
-  opacity: 0.5;
-  cursor: grabbing;
-}
