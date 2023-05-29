@@ -16,6 +16,7 @@
     "@ya.praktikum/react-developer-burger-ui-components": "^1.14.0",
     "async": "^3.2.4",
     "create-store": "^1.0.0",
+    "deploy": "^1.0.3",
     "fetch-mock": "^9.11.0",
     "loader-runner": "^4.3.0",
     "nanoid": "^4.0.0",
