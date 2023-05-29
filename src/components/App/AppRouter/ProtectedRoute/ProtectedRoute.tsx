@@ -4,7 +4,7 @@ import { useActions } from "../../../../hooks/actions";
 import { useAppSelector } from "../../../../hooks/redux";
 import {
   useGetUserQuery,
-  useRefreshTokenMutation
+  useRefreshTokenMutation,
 } from "../../../../services/store/api";
 import { ILocationState } from "../../../../services/types/locationTypes";
 import { _LOGIN_PATH } from "../../../../utils/constants";
