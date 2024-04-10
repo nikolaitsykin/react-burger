@@ -23,7 +23,7 @@ import {
   _PROFILE_PATH,
   _REGISTER_PATH,
   _RESET_PASSWORD_PATH,
-  _ROOT_PATH
+  _ROOT_PATH,
 } from "../../../utils/constants";
 import { ProtectedRoute } from "./ProtectedRoute/ProtectedRoute";
 

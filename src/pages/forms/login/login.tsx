@@ -121,7 +121,6 @@ export const LoginPage = () => {
           placeholder={"Password"}
           extraClass="mb-6"
           data-testid="password-input"
-
         />
         <Button
           type="primary"
