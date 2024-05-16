@@ -1,0 +1,41 @@
+.nav_container {
+  display: flex;
+  flex-direction: column;
+  width: 320px;
+  margin-right: 60px;
+}
+
+.nav_item {
+  text-decoration: none;
+  cursor: pointer;
+  color: #fff;
+  height: 64px;
+}
+
+.nav_description {
+  margin-top: 60px;
+  color: #8585ad;
+  opacity: 0.4;
+}
+
+.nav_item:hover p {
+  color: #ffffff;
+  transition: all 0.2s linear;
+}
+.nav_item:hover svg {
+  transition: all 0.2s linear;
+  fill: #fff;
+}
+
+.logout_button {
+  text-align: left;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.logout_button:hover p {
+  color: #ffffff;
+  transition: all 0.2s linear;
+}

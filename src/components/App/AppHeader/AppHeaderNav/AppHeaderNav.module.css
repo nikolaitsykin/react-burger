@@ -1,0 +1,30 @@
+.nav_container {
+  display: flex;
+  justify-content: flex-start;
+  padding: 0;
+  padding-left: 0px;
+}
+
+.nav_item {
+  display: flex;
+  text-decoration: none;
+  margin-right: 30px;
+  padding: 8px;
+  list-style: none;
+  align-items: center;
+  cursor: pointer;
+  color: #fff;
+}
+
+.nav_item:hover p {
+  color: #ffffff;
+  transition: all 0.2s linear;
+}
+.nav_item:hover svg {
+  transition: all 0.2s linear;
+  fill: #fff;
+}
+
+.list {
+  list-style: none;
+}

@@ -2,22 +2,39 @@
   "name": "react-burger",
   "version": "0.1.0",
   "private": true,
+  "homepage": "./",
   "dependencies": {
+    "@redux-devtools/extension": "^3.2.3",
+    "@reduxjs/toolkit": "1.8.6",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.5.2",
-    "@types/node": "^16.11.62",
-    "@types/react": "^18.0.21",
-    "@types/react-dom": "^18.0.6",
-    "@ya.praktikum/react-developer-burger-ui-components": "^1.13.4",
+    "@types/node": "^16.18.3",
+    "@types/react": "18.0.21",
+    "@types/react-dom": "18.0.6",
+    "@ya.praktikum/react-developer-burger-ui-components": "^1.14.0",
+    "async": "^3.2.4",
+    "create-store": "^1.0.0",
+    "deploy": "^1.0.3",
+    "fetch-mock": "^9.11.0",
+    "loader-runner": "^4.3.0",
+    "nanoid": "^4.0.0",
+    "normalize.css": "^8.0.1",
     "prettier": "^2.7.1",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
+    "react-dnd": "^16.0.1",
+    "react-dnd-html5-backend": "^16.0.1",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.4",
-    "react-scripts": "5.0.1",
+    "react-router-dom": "^5.2.1",
+    "react-scripts": "^5.0.1",
+    "react-test-renderer": "^18.2.0",
+    "react-webpack": "^0.4.1",
     "redux": "^4.2.0",
+    "redux-mock-store": "^1.5.4",
+    "redux-thunk": "^2.4.1",
     "typescript": "^4.8.4",
     "web-vitals": "^2.1.4"
   },
@@ -25,7 +42,10 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "cypress": "npx cypress open",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -44,5 +64,16 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/react-router-dom": "5.3.3",
+    "cypress": "^12.0.2",
+    "eslint-plugin-cypress": "^2.13.2",
+    "fetch-mock": "^9.11.0",
+    "gh-pages": "^4.0.0",
+    "prettier": "2.7.1",
+    "react-test-renderer": "^18.2.0",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-mock-store": "^1.5.4"
   }
 }

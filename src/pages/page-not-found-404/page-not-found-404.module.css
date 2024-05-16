@@ -1,0 +1,14 @@
+.page_not_found_404_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url("../../accets/images/space.jpeg");
+  background-color: #cccccc;
+  height: 82vh;
+}
+
+.content {
+  margin-bottom: 40px;
+  text-align: center;
+}
